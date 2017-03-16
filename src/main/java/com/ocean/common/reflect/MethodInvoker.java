@@ -41,6 +41,7 @@ public class MethodInvoker {
 	/**
 	 * 调用已准备好的Method
 	 */
+	@SuppressWarnings("unchecked")
 	public <T> T invoke(final Object obj, Object... args) {
 		try {
 			return (T) method.invoke(obj, args);

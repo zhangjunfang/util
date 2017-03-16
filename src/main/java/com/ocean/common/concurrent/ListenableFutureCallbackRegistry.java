@@ -91,7 +91,7 @@ public class ListenableFutureCallbackRegistry<T> {
 	 * @param callback the success callback to add
 	 * @since 4.1
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("incomplete-switch")
 	public void addSuccessCallback(SuccessCallback<? super T> callback) {
 		Assert.notNull(callback, "'callback' must not be null");
 		synchronized (this.mutex) {
@@ -111,6 +111,7 @@ public class ListenableFutureCallbackRegistry<T> {
 	 * @param callback the failure callback to add
 	 * @since 4.1
 	 */
+	@SuppressWarnings("incomplete-switch")
 	public void addFailureCallback(FailureCallback callback) {
 		Assert.notNull(callback, "'callback' must not be null");
 		synchronized (this.mutex) {

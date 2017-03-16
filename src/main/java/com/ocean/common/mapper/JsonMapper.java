@@ -113,6 +113,7 @@ public class JsonMapper {
 	 * 
 	 * @see #createCollectionType(Class, Class...)
 	 */
+	@SuppressWarnings("unchecked")
 	public <T> T fromJson(@Nullable String jsonString, JavaType javaType) {
 		if (StringUtils.isEmpty(jsonString)) {
 			return null;
@@ -129,6 +130,7 @@ public class JsonMapper {
 	/**
 	 * 构造Collection类型.
 	 */
+	@SuppressWarnings("rawtypes")
 	public JavaType buildCollectionType(Class<? extends Collection> collectionClass, Class<?> elementClass) {
 		return mapper.getTypeFactory().constructCollectionType(collectionClass, elementClass);
 	}
@@ -136,6 +138,7 @@ public class JsonMapper {
 	/**
 	 * 构造Map类型.
 	 */
+	@SuppressWarnings("rawtypes")
 	public JavaType buildMapType(Class<? extends Map> mapClass, Class<?> keyClass, Class<?> valueClass) {
 		return mapper.getTypeFactory().constructMapType(mapClass, keyClass, valueClass);
 	}

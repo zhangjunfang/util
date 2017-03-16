@@ -269,6 +269,7 @@ public class ClassUtil {
 	 * 
 	 * 因为class.getFiled(); 不能获取父类的private函数, 因此采用循环向上的getDeclaredField();
 	 */
+	@SuppressWarnings("rawtypes")
 	public static Field getAccessibleField(final Class clazz, final String fieldName) {
 		Validate.notNull(clazz, "clazz can't be null");
 		Validate.notEmpty(fieldName, "fieldName can't be blank");
@@ -293,6 +294,7 @@ public class ClassUtil {
 	 * 
 	 * 因为class.getMethod() 不能获取父类的private函数, 因此采用循环向上的getDeclaredMethod();
 	 */
+	@SuppressWarnings("rawtypes")
 	public static Method getAccessibleMethod(final Class<?> clazz, final String methodName,
 			Class<?>... parameterTypes) {
 		Validate.notNull(clazz, "class can't be null");
@@ -325,6 +327,7 @@ public class ClassUtil {
 	 * 
 	 * 因为class.getMethods() 不能获取父类的private函数, 因此采用循环向上的getMethods();
 	 */
+	@SuppressWarnings("rawtypes")
 	public static Method getAccessibleMethodByName(final Class clazz, final String methodName) {
 		Validate.notNull(clazz, "clazz can't be null");
 		Validate.notEmpty(methodName, "methodName can't be blank");
@@ -432,6 +435,7 @@ public class ClassUtil {
 	 * @param clazz The class to introspect
 	 * @return the first generic declaration, or Object.class if cannot be determined
 	 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public static <T> Class<T> getClassGenricType(final Class clazz) {
 		return getClassGenricType(clazz, 0);
 	}
@@ -449,6 +453,7 @@ public class ClassUtil {
 	 * @param index the Index of the generic ddeclaration, start from 0.
 	 * @return the index generic declaration, or Object.class if cannot be determined
 	 */
+	@SuppressWarnings("rawtypes")
 	public static Class getClassGenricType(final Class clazz, final int index) {
 
 		Type genType = clazz.getGenericSuperclass();

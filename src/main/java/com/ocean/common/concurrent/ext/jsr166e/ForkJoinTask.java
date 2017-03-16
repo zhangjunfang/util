@@ -183,6 +183,7 @@ import java.util.concurrent.locks.ReentrantLock;
  * @since 1.7
  * @author Doug Lea
  */
+@SuppressWarnings("restriction")
 public abstract class ForkJoinTask<V> implements Future<V>, Serializable {
 
     /*
@@ -533,7 +534,8 @@ public abstract class ForkJoinTask<V> implements Future<V>, Serializable {
      *
      * @return the exception, or null if none
      */
-    private Throwable getThrowableException() {
+    @SuppressWarnings("unused")
+	private Throwable getThrowableException() {
         if ((status & DONE_MASK) != EXCEPTIONAL)
             return null;
         int h = System.identityHashCode(this);
@@ -799,7 +801,6 @@ public abstract class ForkJoinTask<V> implements Future<V>, Serializable {
             invokeAll(tasks.toArray(new ForkJoinTask<?>[tasks.size()]));
             return tasks;
         }
-        @SuppressWarnings("unchecked")
         List<? extends ForkJoinTask<?>> ts =
             (List<? extends ForkJoinTask<?>>) tasks;
         Throwable ex = null;
@@ -1339,7 +1340,7 @@ public abstract class ForkJoinTask<V> implements Future<V>, Serializable {
      * equal to e and is now tag.
      * @since 1.8
      */
-    public final boolean compareAndSetForkJoinTaskTag(short e, short tag) {
+	public final boolean compareAndSetForkJoinTaskTag(short e, short tag) {
         for (int s;;) {
             if ((short)(s = status) != e)
                 return false;
@@ -1539,7 +1540,7 @@ public abstract class ForkJoinTask<V> implements Future<V>, Serializable {
         try {
             return java.security.AccessController.doPrivileged
             (new java.security.PrivilegedExceptionAction<sun.misc.Unsafe>() {
-                public sun.misc.Unsafe run() throws Exception {
+				public sun.misc.Unsafe run() throws Exception {
                     Class<sun.misc.Unsafe> k = sun.misc.Unsafe.class;
                     for (java.lang.reflect.Field f : k.getDeclaredFields()) {
                         f.setAccessible(true);

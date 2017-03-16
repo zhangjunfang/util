@@ -131,6 +131,7 @@ import java.util.concurrent.TimeUnit;
  * @since 1.7
  * @author Doug Lea
  */
+@SuppressWarnings("restriction")
 public class ForkJoinPool extends AbstractExecutorService {
 
     /*
@@ -2300,7 +2301,8 @@ public class ForkJoinPool extends AbstractExecutorService {
      * Returns common pool queue for a thread that has submitted at
      * least one task.
      */
-    static WorkQueue commonSubmitterQueue() {
+    @SuppressWarnings("unused")
+	static WorkQueue commonSubmitterQueue() {
         Submitter z; ForkJoinPool p; WorkQueue[] ws; int m, r;
         return ((z = submitters.get()) != null &&
                 (p = common) != null &&

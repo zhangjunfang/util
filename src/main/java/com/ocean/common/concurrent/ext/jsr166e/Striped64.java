@@ -15,6 +15,7 @@ import java.util.Random;
  * for classes supporting dynamic striping on 64bit values. The class
  * extends Number so that concrete subclasses must publicly do so.
  */
+@SuppressWarnings("restriction")
 public abstract class Striped64 extends Number {
     /*
      * This class maintains a lazily-initialized table of atomically
@@ -80,6 +81,11 @@ public abstract class Striped64 extends Number {
      */
 
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = -8304501737191618552L;
+
+	/**
      * Padded variant of AtomicLong supporting only raw accesses plus CAS.
      * The value field is placed between pads, hoping that the JVM doesn't
      * reorder them.
@@ -93,7 +99,7 @@ public abstract class Striped64 extends Number {
         volatile long q0, q1, q2, q3, q4, q5, q6;
         Cell(long x) { value = x; }
 
-        final boolean cas(long cmp, long val) {
+		final boolean cas(long cmp, long val) {
             return UNSAFE.compareAndSwapLong(this, valueOffset, cmp, val);
         }
 
@@ -318,7 +324,7 @@ public abstract class Striped64 extends Number {
         try {
             return java.security.AccessController.doPrivileged
             (new java.security.PrivilegedExceptionAction<sun.misc.Unsafe>() {
-                public sun.misc.Unsafe run() throws Exception {
+				public sun.misc.Unsafe run() throws Exception {
                     Class<sun.misc.Unsafe> k = sun.misc.Unsafe.class;
                     for (java.lang.reflect.Field f : k.getDeclaredFields()) {
                         f.setAccessible(true);

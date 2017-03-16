@@ -30,11 +30,13 @@ import com.ocean.common.reflect.ClassUtil;
  */
 public class XmlMapper {
 
+	@SuppressWarnings("rawtypes")
 	private static ConcurrentMap<Class, JAXBContext> jaxbContexts = new ConcurrentHashMap<Class, JAXBContext>();
 
 	/**
 	 * Java Object->Xml without encoding.
 	 */
+	@SuppressWarnings("rawtypes")
 	public static String toXml(Object root) {
 		Class clazz =ClassUtil.unwrapCglib(root);
 		return toXml(root, clazz, null);
@@ -43,6 +45,7 @@ public class XmlMapper {
 	/**
 	 * Java Object->Xml with encoding.
 	 */
+	@SuppressWarnings("rawtypes")
 	public static String toXml(Object root, String encoding) {
 		Class clazz = ClassUtil.unwrapCglib(root);
 		return toXml(root, clazz, encoding);
@@ -51,6 +54,7 @@ public class XmlMapper {
 	/**
 	 * Java Object->Xml with encoding.
 	 */
+	@SuppressWarnings("rawtypes")
 	public static String toXml(Object root, Class clazz, String encoding) {
 		try {
 			StringWriter writer = new StringWriter();
@@ -64,6 +68,7 @@ public class XmlMapper {
 	/**
 	 * Java Collection->Xml without encoding, 特别支持Root Element是Collection的情形.
 	 */
+	@SuppressWarnings("rawtypes")
 	public static String toXml(Collection<?> root, String rootName, Class clazz) {
 		return toXml(root, rootName, clazz, null);
 	}
@@ -71,6 +76,7 @@ public class XmlMapper {
 	/**
 	 * Java Collection->Xml with encoding, 特别支持Root Element是Collection的情形.
 	 */
+	@SuppressWarnings("rawtypes")
 	public static String toXml(Collection<?> root, String rootName, Class clazz, String encoding) {
 		try {
 			CollectionWrapper wrapper = new CollectionWrapper();
@@ -91,6 +97,7 @@ public class XmlMapper {
 	/**
 	 * Xml->Java Object.
 	 */
+	@SuppressWarnings("unchecked")
 	public static <T> T fromXml(String xml, Class<T> clazz) {
 		try {
 			StringReader reader = new StringReader(xml);
@@ -104,6 +111,7 @@ public class XmlMapper {
 	 * 创建Marshaller并设定encoding(可为null).
 	 * 线程不安全，需要每次创建或pooling。
 	 */
+	@SuppressWarnings("rawtypes")
 	public static Marshaller createMarshaller(Class clazz, String encoding) {
 		try {
 			JAXBContext jaxbContext = getJaxbContext(clazz);
@@ -126,6 +134,7 @@ public class XmlMapper {
 	 * 创建UnMarshaller.
 	 * 线程不安全，需要每次创建或pooling。
 	 */
+	@SuppressWarnings("rawtypes")
 	public static Unmarshaller createUnmarshaller(Class clazz) {
 		try {
 			JAXBContext jaxbContext = getJaxbContext(clazz);
@@ -135,6 +144,7 @@ public class XmlMapper {
 		}
 	}
 
+	@SuppressWarnings("rawtypes")
 	protected static JAXBContext getJaxbContext(Class clazz) {
 		Validate.notNull(clazz, "'clazz' must not be null");
 		JAXBContext jaxbContext = jaxbContexts.get(clazz);

@@ -48,6 +48,7 @@ public class SortedArrayList<E> extends ArrayList<E> {
 	/**
 	 * Returns comparator assigned to this collection, if such exist.
 	 */
+	@SuppressWarnings("rawtypes")
 	public Comparator getComparator() {
 		return comparator;
 	}
@@ -131,7 +132,7 @@ public class SortedArrayList<E> extends ArrayList<E> {
 	 * Compares two keys using the correct comparison method for this
 	 * collection.
 	 */
-	@SuppressWarnings( {"unchecked"})
+	@SuppressWarnings( {"unchecked", "rawtypes"})
 	protected int compare(E k1, E k2) {
 		if (comparator == null) {
 			return ((Comparable) k1).compareTo(k2);

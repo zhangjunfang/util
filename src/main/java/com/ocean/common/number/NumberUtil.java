@@ -56,7 +56,7 @@ public class NumberUtil {
 	 * 判断字符串是否合法数字
 	 */
 	public static boolean isNumber(String str) {
-		return NumberUtils.isNumber(str);
+		return NumberUtils.isCreatable(str);
 	}
 
 	/**

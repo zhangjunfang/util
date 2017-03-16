@@ -217,6 +217,7 @@ import java.util.concurrent.locks.ReentrantLock;
  * @param <K> the type of keys maintained by this map
  * @param <V> the type of mapped values
  */
+@SuppressWarnings("restriction")
 public class ConcurrentHashMapV8<K,V> extends AbstractMap<K,V>
     implements ConcurrentMap<K,V>, Serializable {
     private static final long serialVersionUID = 7249069246763182397L;
@@ -757,17 +758,16 @@ public class ConcurrentHashMapV8<K,V> extends AbstractMap<K,V>
      * writes to be conservative.
      */
 
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({  "unchecked" })
     static final <K,V> Node<K,V> tabAt(Node<K,V>[] tab, int i) {
         return (Node<K,V>)U.getObjectVolatile(tab, ((long)i << ASHIFT) + ABASE);
     }
-
     static final <K,V> boolean casTabAt(Node<K,V>[] tab, int i,
                                         Node<K,V> c, Node<K,V> v) {
         return U.compareAndSwapObject(tab, ((long)i << ASHIFT) + ABASE, c, v);
     }
 
-    static final <K,V> void setTabAt(Node<K,V>[] tab, int i, Node<K,V> v) {
+	static final <K,V> void setTabAt(Node<K,V>[] tab, int i, Node<K,V> v) {
         U.putObjectVolatile(tab, ((long)i << ASHIFT) + ABASE, v);
     }
 
@@ -1644,7 +1644,8 @@ public class ConcurrentHashMapV8<K,V> extends AbstractMap<K,V>
      * @throws RuntimeException or Error if the mappingFunction does so,
      *         in which case the mapping is left unestablished
      */
-    public V computeIfAbsent(K key, Fun<? super K, ? extends V> mappingFunction) {
+    @SuppressWarnings("unused")
+	public V computeIfAbsent(K key, Fun<? super K, ? extends V> mappingFunction) {
         if (key == null || mappingFunction == null)
             throw new NullPointerException();
         int h = spread(key.hashCode());
@@ -2222,7 +2223,7 @@ public class ConcurrentHashMapV8<K,V> extends AbstractMap<K,V>
     /**
      * Initializes table, using the size recorded in sizeCtl.
      */
-    private final Node<K,V>[] initTable() {
+	private final Node<K,V>[] initTable() {
         Node<K,V>[] tab; int sc;
         while ((tab = table) == null || tab.length == 0) {
             if ((sc = sizeCtl) < 0)
@@ -2255,7 +2256,7 @@ public class ConcurrentHashMapV8<K,V> extends AbstractMap<K,V>
      * @param x the count to add
      * @param check if <0, don't check resize, if <= 1 only check if uncontended
      */
-    private final void addCount(long x, int check) {
+	private final void addCount(long x, int check) {
         CounterCell[] as; long b, s;
         if ((as = counterCells) != null ||
             !U.compareAndSwapLong(this, BASECOUNT, b = baseCount, s = b + x)) {
@@ -2297,7 +2298,7 @@ public class ConcurrentHashMapV8<K,V> extends AbstractMap<K,V>
     /**
      * Helps transfer if a resize is in progress.
      */
-    final Node<K,V>[] helpTransfer(Node<K,V>[] tab, Node<K,V> f) {
+	final Node<K,V>[] helpTransfer(Node<K,V>[] tab, Node<K,V> f) {
         Node<K,V>[] nextTab; int sc;
         if (tab != null && (f instanceof ForwardingNode) &&
             (nextTab = ((ForwardingNode<K,V>)f).nextTable) != null) {
@@ -2322,7 +2323,7 @@ public class ConcurrentHashMapV8<K,V> extends AbstractMap<K,V>
      *
      * @param size number of elements (doesn't need to be perfectly accurate)
      */
-    private final void tryPresize(int size) {
+	private final void tryPresize(int size) {
         int c = (size >= (MAXIMUM_CAPACITY >>> 1)) ? MAXIMUM_CAPACITY :
             tableSizeFor(size + (size >>> 1) + 1);
         int sc;
@@ -2367,7 +2368,7 @@ public class ConcurrentHashMapV8<K,V> extends AbstractMap<K,V>
      * Moves and/or copies the nodes in each bin to new table. See
      * above for explanation.
      */
-    private final void transfer(Node<K,V>[] tab, Node<K,V>[] nextTab) {
+	private final void transfer(Node<K,V>[] tab, Node<K,V>[] nextTab) {
         int n = tab.length, stride;
         if ((stride = (NCPU > 1) ? (n >>> 3) / NCPU : n) < MIN_TRANSFER_STRIDE)
             stride = MIN_TRANSFER_STRIDE; // subdivide range
@@ -2506,7 +2507,8 @@ public class ConcurrentHashMapV8<K,V> extends AbstractMap<K,V>
      * Replaces all linked nodes in bin at given index unless table is
      * too small, in which case resizes instead.
      */
-    private final void treeifyBin(Node<K,V>[] tab, int index) {
+    @SuppressWarnings("unused")
+	private final void treeifyBin(Node<K,V>[] tab, int index) {
         Node<K,V> b; int n, sc;
         if (tab != null) {
             if ((n = tab.length) < MIN_TREEIFY_CAPACITY)
@@ -2613,7 +2615,7 @@ public class ConcurrentHashMapV8<K,V> extends AbstractMap<K,V>
      * forcing writers (who hold bin lock) to wait for readers (who do
      * not) to complete before tree restructuring operations.
      */
-    static final class TreeBin<K,V> extends Node<K,V> {
+	static final class TreeBin<K,V> extends Node<K,V> {
         TreeNode<K,V> root;
         volatile TreeNode<K,V> first;
         volatile Thread waiter;
@@ -2690,7 +2692,7 @@ public class ConcurrentHashMapV8<K,V> extends AbstractMap<K,V>
         /**
          * Acquires write lock for tree restructuring.
          */
-        private final void lockRoot() {
+		private final void lockRoot() {
             if (!U.compareAndSwapInt(this, LOCKSTATE, 0, WRITER))
                 contendedLock(); // offload to separate method
         }
@@ -2705,7 +2707,7 @@ public class ConcurrentHashMapV8<K,V> extends AbstractMap<K,V>
         /**
          * Possibly blocks awaiting root lock.
          */
-        private final void contendedLock() {
+		private final void contendedLock() {
             boolean waiting = false;
             for (int s;;) {
                 if (((s = lockState) & ~WAITER) == 0) {
@@ -4683,7 +4685,8 @@ public class ConcurrentHashMapV8<K,V> extends AbstractMap<K,V>
      * Base class for bulk tasks. Repeats some fields and code from
      * class Traverser, because we need to subclass CountedCompleter.
      */
-    abstract static class BulkTask<K,V,R> extends CountedCompleter<R> {
+    @SuppressWarnings("serial")
+	abstract static class BulkTask<K,V,R> extends CountedCompleter<R> {
         Node<K,V>[] tab;        // same as Traverser
         Node<K,V> next;
         int index;
@@ -4709,7 +4712,8 @@ public class ConcurrentHashMapV8<K,V> extends AbstractMap<K,V>
         /**
          * Same as Traverser version
          */
-        final Node<K,V> advance() {
+        @SuppressWarnings("unused")
+		final Node<K,V> advance() {
             Node<K,V> e;
             if ((e = next) != null)
                 e = e.next;
@@ -6153,7 +6157,7 @@ public class ConcurrentHashMapV8<K,V> extends AbstractMap<K,V>
     }
 
     // See LongAdder version for explanation
-    private final void fullAddCount(long x, CounterHashCode hc,
+	private final void fullAddCount(long x, CounterHashCode hc,
                                     boolean wasUncontended) {
         int h;
         if (hc == null) {
@@ -6242,7 +6246,7 @@ public class ConcurrentHashMapV8<K,V> extends AbstractMap<K,V>
     }
 
     // Unsafe mechanics
-    private static final sun.misc.Unsafe U;
+	private static final sun.misc.Unsafe U;
     private static final long SIZECTL;
     private static final long TRANSFERINDEX;
     private static final long BASECOUNT;
