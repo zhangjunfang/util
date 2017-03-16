@@ -14,7 +14,7 @@ import com.ocean.common.base.annotation.Nullable;
  * 
  * 2. StackTrace性能优化相关，尽量使用静态异常避免异常生成时获取StackTrace，及打印StackTrace的消耗
  * 
- * @author calvin
+ * @author ocean
  */
 public class ExceptionUtil {
 
@@ -296,7 +296,7 @@ public class ExceptionUtil {
 	/**
 	 * 自定义一个CheckedException的wrapper
 	 * 
-	 * @author calvin
+	 * @author ocean
 	 *
 	 */
 	public static class UncheckedException extends RuntimeException {

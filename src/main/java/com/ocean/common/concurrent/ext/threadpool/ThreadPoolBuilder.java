@@ -29,7 +29,7 @@ import com.ocean.common.concurrent.ext.threadpool.QueuableCachedThreadPool.Contr
  * ExecutorService ExecutorService = new FixedThreadPoolBuilder().setPoolSize(10).build();
  * </pre>
  * 
- * 参考文章 《Java ThreadPool的正确打开方式》http://calvin1978.blogcn.com/articles/java-threadpool.html
+ * 参考文章 《Java ThreadPool的正确打开方式》http://ocean1978.blogcn.com/articles/java-threadpool.html
  */
 public class ThreadPoolBuilder {
 

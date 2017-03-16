@@ -19,7 +19,7 @@ import com.ocean.common.number.RandomUtil;
  * 
  * 支持Hex与Base64两种编码方式.
  * 
- * @author calvin
+ * @author ocean
  */
 public class CryptoUtil {
 

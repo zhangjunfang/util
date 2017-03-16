@@ -16,7 +16,7 @@ import com.ocean.common.time.ClockUtil;
  * From facebook
  * https://github.com/facebook/jcommon/blob/master/logging-util/src/main/java/com/facebook/logging/util/TimeSamplingSLF4JLogger.java
  * 
- * @author calvin
+ * @author ocean
  */
 public class ThrottledSlf4jLogger implements Logger {
 

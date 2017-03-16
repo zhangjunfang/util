@@ -9,7 +9,7 @@ import com.ocean.common.number.RandomUtil;
  * 
  * from Twitter Common, 优化使用ThreadLocalRandom
  * 
- * @author calvin
+ * @author ocean
  */
 public class Sampler {
 

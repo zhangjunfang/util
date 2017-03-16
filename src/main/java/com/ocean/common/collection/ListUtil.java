@@ -23,7 +23,7 @@ import com.ocean.common.collection.type.SortedArrayList;
  * 
  * 5. 集合运算：交集，并集, 差集, 补集，from Commons Collection，但对其不合理的地方做了修正
  * 
- * @author calvin
+ * @author ocean
  */
 @SuppressWarnings("unchecked")
 public class ListUtil {

@@ -26,7 +26,7 @@ import com.ocean.common.base.annotation.Nullable;
  * 
  * 注意: 需要参考本模块的POM文件，显式引用jackson.
  * 
- * @author calvin
+ * @author ocean
  */
 public class JsonMapper {
 

@@ -59,6 +59,7 @@ public class ArrayUtil {
 	/**
 	 * 传入类型与大小创建数组.
 	 */
+	@SuppressWarnings("unchecked")
 	public static <T> T[] newArray(Class<T> type, int length) {
 		return (T[]) Array.newInstance(type, length);
 	}
@@ -66,6 +67,7 @@ public class ArrayUtil {
 	/**
 	 * list.toArray() 返回的是Object[] 如果要有类型的数组话，就要使用list.toArray(new String[list.size()])，这里对调用做了简化
 	 */
+	@SuppressWarnings("unchecked")
 	public static <T> T[] toArray(List<T> list, Class<T> type) {
 		return list.toArray((T[]) Array.newInstance(type, list.size()));
 	}
@@ -79,6 +81,7 @@ public class ArrayUtil {
 	 * 
 	 * @see java.util.Arrays#asList(Object...)
 	 */
+	@SuppressWarnings("unchecked")
 	public static <T> List<T> asList(T... a) {
 		return Arrays.asList(a);
 	}

@@ -14,7 +14,7 @@ import com.ocean.common.collection.ListUtil;
  * 
  * 本类仅补充少量额外方法, 尤其是针对char的运算
  * 
- * @author calvin
+ * @author ocean
  */
 public class MoreStringUtil {
 

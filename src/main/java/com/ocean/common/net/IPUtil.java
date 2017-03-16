@@ -18,7 +18,7 @@ import com.ocean.common.text.MoreStringUtil;
  * 
  * InetAddress与String的转换其实消耗不小，如果是有限的地址，建议进行缓存.
  * 
- * @author calvin
+ * @author ocean
  */
 public class IPUtil {
 

@@ -16,6 +16,7 @@ public class ObjectUtil {
 	/**
 	 * 对象的toString()，处理了对象为数组和集合的情况.
 	 */
+	@SuppressWarnings("rawtypes")
 	public static String toPrettyString(Object value) {
 		if (value == null) {
 			return NULL;

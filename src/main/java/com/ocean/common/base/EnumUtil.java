@@ -7,7 +7,7 @@ import org.apache.commons.lang3.EnumUtils;
 /**
  * 枚举工具集
  * 
- * @author calvin
+ * @author ocean
  *
  */
 public class EnumUtil {
@@ -22,6 +22,7 @@ public class EnumUtil {
 	/**
 	 * 将若干个枚举值转换为long，用于使用long保存多个选项的情况.
 	 */
+	@SafeVarargs
 	public static <E extends Enum<E>> long generateBits(final Class<E> enumClass, final E... values) {
 		return EnumUtils.generateBitVector(enumClass, values);
 	}

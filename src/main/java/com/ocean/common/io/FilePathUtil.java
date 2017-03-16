@@ -9,7 +9,7 @@ import com.ocean.common.text.MoreStringUtil;
 /**
  * 关于文件路径的工具集
  * 
- * @author calvin
+ * @author ocean
  */
 public class FilePathUtil {
 

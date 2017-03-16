@@ -45,9 +45,9 @@ import com.ocean.common.concurrent.ext.jsr166e.ConcurrentHashMapV8;
  * 4. 特殊的类型，包括WeakConcurrentHashMap, IntObjectHashMap, MapCounter, MultiKeyMap, RangeMap
  * 
  * 
- * 参考文章：《高性能场景下，Map家族的优化使用建议》 http://calvin1978.blogcn.com/articles/hashmap.html
+ * 参考文章：《高性能场景下，Map家族的优化使用建议》 http://ocean1978.blogcn.com/articles/hashmap.html
  * 
- * @author calvin
+ * @author ocean
  */
 @SuppressWarnings("unchecked")
 public class MapUtil {
@@ -328,6 +328,7 @@ public class MapUtil {
 	 * 
 	 * 另有其他结构存储values的MultiMap，请自行参考MultimapBuilder使用.
 	 */
+	@SuppressWarnings("rawtypes")
 	public static <K, V extends Comparable> SortedSetMultimap<K, V> createSortedSetValueMap() {
 		return MultimapBuilder.hashKeys().treeSetValues().build();
 	}

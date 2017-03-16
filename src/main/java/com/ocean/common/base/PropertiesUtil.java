@@ -20,7 +20,7 @@ import com.ocean.common.number.NumberUtil;
  * 
  * 2. 从文件或字符串装载Properties
  * 
- * @author calvin
+ * @author ocean
  */
 public class PropertiesUtil {
 

@@ -147,6 +147,7 @@ public class CollectionUtil {
 	/**
 	 * 排序最高的N个对象, guava已优化.
 	 */
+	@SuppressWarnings("rawtypes")
 	public static <T extends Comparable> List<T> topN(Iterable<T> coll, int n) {
 		return Ordering.natural().greatestOf(coll, n);
 	}
@@ -154,6 +155,7 @@ public class CollectionUtil {
 	/**
 	 * 排序最高的N个对象, guava已优化.
 	 */
+	@SuppressWarnings("rawtypes")
 	public static <T extends Comparable> List<T> topN(Iterable<T> coll, int n, Comparator<? super T> comp) {
 		return Ordering.from(comp).greatestOf(coll, n);
 	}
@@ -161,6 +163,7 @@ public class CollectionUtil {
 	/**
 	 * 排序最低的N个对象, guava已优化.
 	 */
+	@SuppressWarnings("rawtypes")
 	public static <T extends Comparable> List<T> bottomN(Iterable<T> coll, int n) {
 		return Ordering.natural().leastOf(coll, n);
 	}
@@ -168,6 +171,7 @@ public class CollectionUtil {
 	/**
 	 * 排序最低的N个对象, guava已优化.
 	 */
+	@SuppressWarnings("rawtypes")
 	public static <T extends Comparable> List<T> bottomN(Iterable<T> coll, int n, Comparator<? super T> comp) {
 		return Ordering.from(comp).leastOf(coll, n);
 	}

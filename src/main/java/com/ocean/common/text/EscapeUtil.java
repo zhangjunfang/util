@@ -15,7 +15,7 @@ import org.apache.commons.lang3.StringEscapeUtils;
  * 
  * 比如 "bread" & "butter" 转化为 &quot;bread&quot; &amp; &quot;butter&quot;
  * 
- * @author calvin
+ * @author ocean
  */
 public class EscapeUtil {
 

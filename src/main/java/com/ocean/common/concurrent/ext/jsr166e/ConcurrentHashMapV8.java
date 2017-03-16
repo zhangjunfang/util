@@ -4508,7 +4508,7 @@ public class ConcurrentHashMapV8<K,V> extends AbstractMap<K,V>
                      (containsAll(c) && c.containsAll(this))));
         }
 
-        //calvin: change the name to avoid conflict in JDK8
+        //ocean: change the name to avoid conflict in JDK8
         public ConcurrentHashMapSpliterator<K> spliterator2() {
             Node<K,V>[] t;
             ConcurrentHashMapV8<K,V> m = map;
@@ -4567,7 +4567,7 @@ public class ConcurrentHashMapV8<K,V> extends AbstractMap<K,V>
             throw new UnsupportedOperationException();
         }
 
-        //calvin: change the name to avoid conflict in JDK8
+        //ocean: change the name to avoid conflict in JDK8
         public ConcurrentHashMapSpliterator<V> spliterator2() {
             Node<K,V>[] t;
             ConcurrentHashMapV8<K,V> m = map;
@@ -4656,7 +4656,7 @@ public class ConcurrentHashMapV8<K,V> extends AbstractMap<K,V>
                      (containsAll(c) && c.containsAll(this))));
         }
 
-        //calvin: change the name to avoid conflict in JDK8
+        //ocean: change the name to avoid conflict in JDK8
         public ConcurrentHashMapSpliterator<Map.Entry<K,V>> spliterator2() {
             Node<K,V>[] t;
             ConcurrentHashMapV8<K,V> m = map;

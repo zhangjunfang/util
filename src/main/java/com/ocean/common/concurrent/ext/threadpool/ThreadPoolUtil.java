@@ -22,7 +22,7 @@ import com.ocean.common.base.annotation.Nullable;
  * 
  * 3. 防止第三方Runnable未捕捉异常导致线程跑飞
  * 
- * @author calvin
+ * @author ocean
  *
  */
 public class ThreadPoolUtil {

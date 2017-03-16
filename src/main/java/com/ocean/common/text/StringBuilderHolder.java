@@ -3,7 +3,7 @@ package com.ocean.common.text;
 /**
  * 参考Netty的InternalThreadLocalMap 与 BigDecimal, 放在threadLocal中重用的StringBuilder, 节约StringBuilder内部的char[]
  * 
- * 参考文章：《StringBuilder在高性能场景下的正确用法》http://calvin1978.blogcn.com/articles/stringbuilder.html
+ * 参考文章：《StringBuilder在高性能场景下的正确用法》http://ocean1978.blogcn.com/articles/stringbuilder.html
  * 
  * 不过仅在String对象较大时才有明显效果，否则抵不上访问ThreadLocal的消耗.
  * 

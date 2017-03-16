@@ -19,7 +19,7 @@ import com.ocean.common.base.MoreValidate;
  * 
  * 3. 随机字符串
  * 
- * @author calvin
+ * @author ocean
  */
 public class RandomUtil {
 
@@ -36,7 +36,7 @@ public class RandomUtil {
 	 * 
 	 * 但JDK7中，需要在启动参数加入 -Djava.security=file:/dev/./urandom （中间那个点很重要）
 	 * 
-	 * 详见：《SecureRandom的江湖偏方与真实效果》http://calvin1978.blogcn.com/articles/securerandom.html
+	 * 详见：《SecureRandom的江湖偏方与真实效果》http://ocean1978.blogcn.com/articles/securerandom.html
 	 */
 	public static SecureRandom secureRandom() {
 		try {

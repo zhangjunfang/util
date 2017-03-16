@@ -103,6 +103,7 @@ public class SetUtil {
 	 * 
 	 * @see java.util.Collections#emptySet()
 	 */
+	@SuppressWarnings("unchecked")
 	public static <T> Set<T> emptySetIfNull(final Set<T> set) {
 		return set == null ? (Set<T>) Collections.EMPTY_SET : set;
 	}

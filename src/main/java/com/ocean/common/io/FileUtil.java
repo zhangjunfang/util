@@ -30,7 +30,7 @@ import com.ocean.common.text.Charsets;
  * 
  * 2.文件及目录操作
  * 
- * @author calvin
+ * @author ocean
  */
 public class FileUtil {
 	

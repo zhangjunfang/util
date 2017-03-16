@@ -28,7 +28,7 @@ import com.ocean.common.base.annotation.Nullable;
  * 
  * 其中crc32基于JDK, murmurhash基于guava
  * 
- * @author calvin
+ * @author ocean
  */
 public class HashUtil {
 

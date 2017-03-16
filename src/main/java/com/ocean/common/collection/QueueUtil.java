@@ -110,6 +110,7 @@ public class QueueUtil {
 	 * 
 	 * @see Collections#asLifoQueue()
 	 */
+	@SuppressWarnings("unchecked")
 	public static <E> Queue<E> createConcurrentStack() {
 		return (Queue<E>) Collections.asLifoQueue(newConcurrentNonBlockingDeque());
 	}

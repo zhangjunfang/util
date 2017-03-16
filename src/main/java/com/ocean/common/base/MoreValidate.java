@@ -11,7 +11,7 @@ import com.ocean.common.base.annotation.Nullable;
  * 
  * @see com.google.common.math.MathPreconditions
  * 
- * @author calvin
+ * @author ocean
  */
 public class MoreValidate {
 
