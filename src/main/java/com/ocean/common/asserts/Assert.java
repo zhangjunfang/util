@@ -36,8 +36,7 @@ public abstract class Assert {
 	}
 
 	/**
-	 * Assert a boolean expression, throwing an {@code IllegalArgumentException}
-	 * if the expression evaluates to {@code false}.
+	 * 当 expression 不为 true 抛出异常；
 	 * 
 	 * <pre class="code">
 	 * Assert.isTrue(i &gt; 0, "The value must be greater than zero");
@@ -77,7 +76,10 @@ public abstract class Assert {
 	}
 
 	/**
-	 * Assert that an object is not {@code null}.
+	 * 
+	 * 当 object 不为 null 时抛出异常，notNull(Object object, String message) 方法允许您通过
+	 * message 定制异常信息。和 notNull() 方法断言规则相反的方法是 isNull(Object
+	 * object)/isNull(Object object, String message)，它要求入参一定是 null；
 	 * 
 	 * <pre class="code">
 	 * Assert.notNull(clazz, "The class must not be null");
@@ -96,10 +98,8 @@ public abstract class Assert {
 		}
 	}
 
-
 	/**
-	 * Assert that the given String is not empty; that is, it must not be
-	 * {@code null} and not the empty String.
+	 * 当 text 为 null 或长度为 0 时抛出异常
 	 * 
 	 * <pre class="code">
 	 * Assert.hasLength(name, "Name must not be empty");
@@ -118,10 +118,9 @@ public abstract class Assert {
 			throw new IllegalArgumentException(message);
 		}
 	}
+
 	/**
-	 * Assert that the given String contains valid text content; that is, it
-	 * must not be {@code null} and must contain at least one non-whitespace
-	 * character.
+	 *   text 不能为 null 且必须至少包含一个非空格的字符，否则抛出异常；
 	 * 
 	 * <pre class="code">
 	 * Assert.hasText(name, "'name' must not be empty");
@@ -165,8 +164,9 @@ public abstract class Assert {
 	}
 
 	/**
-	 * Assert that an array contains elements; that is, it must not be
-	 * {@code null} and must contain at least one element.
+	 * 当集合未包含元素时抛出异常。 notEmpty(Map map) / notEmpty(Map map, String message) 和
+	 * notEmpty(Object[] array, String message) / notEmpty(Object[] array,
+	 * String message) 分别对 Map 和 Object[] 类型的入参进行判断；
 	 * 
 	 * <pre class="code">
 	 * Assert.notEmpty(array, "The array must contain elements");
@@ -184,7 +184,6 @@ public abstract class Assert {
 			throw new IllegalArgumentException(message);
 		}
 	}
-
 
 	/**
 	 * Assert that an array contains no {@code null} elements.
@@ -213,8 +212,9 @@ public abstract class Assert {
 	}
 
 	/**
-	 * Assert that a collection contains elements; that is, it must not be
-	 * {@code null} and must contain at least one element.
+	 * 当集合未包含元素时抛出异常。 notEmpty(Map map) / notEmpty(Map map, String message) 和
+	 * notEmpty(Object[] array, String message) / notEmpty(Object[] array,
+	 * String message) 分别对 Map 和 Object[] 类型的入参进行判断；
 	 * 
 	 * <pre class="code">
 	 * Assert.notEmpty(collection, "Collection must contain elements");
@@ -232,7 +232,9 @@ public abstract class Assert {
 			throw new IllegalArgumentException(message);
 		}
 	}
+
 	/**
+	 * map 
 	 * Assert that a Map contains entries; that is, it must not be {@code null}
 	 * and must contain at least one entry.
 	 * 
@@ -254,7 +256,7 @@ public abstract class Assert {
 	}
 
 	/**
-	 * Assert that the provided object is an instance of the provided class.
+	 *  如果 obj 不能被正确造型为 clazz 指定的类将抛出异常； 
 	 * 
 	 * <pre class="code">
 	 * Assert.instanceOf(Foo.class, foo, "Foo expected");
@@ -282,7 +284,7 @@ public abstract class Assert {
 	}
 
 	/**
-	 * Assert that the provided object is an instance of the provided class.
+	 *  如果 obj 不能被正确造型为 clazz 指定的类将抛出异常； 
 	 * 
 	 * <pre class="code">
 	 * Assert.instanceOf(Foo.class, foo);
@@ -300,7 +302,7 @@ public abstract class Assert {
 	}
 
 	/**
-	 * Assert that {@code superType.isAssignableFrom(subType)} is {@code true}.
+	 * subType 必须可以按类型匹配于 superType，否则将抛出异常；
 	 * 
 	 * <pre class="code">
 	 * Assert.isAssignable(Number.class, myClass, "Number expected");
@@ -328,7 +330,7 @@ public abstract class Assert {
 	}
 
 	/**
-	 * Assert that {@code superType.isAssignableFrom(subType)} is {@code true}.
+	 * subType 必须可以按类型匹配于 superType，否则将抛出异常；
 	 * 
 	 * <pre class="code">
 	 * Assert.isAssignable(Number.class, myClass);
