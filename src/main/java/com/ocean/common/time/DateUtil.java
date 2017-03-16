@@ -5,7 +5,8 @@ import java.util.Date;
 
 import org.apache.commons.lang3.Validate;
 import org.apache.commons.lang3.time.DateUtils;
-import org.springside.modules.utils.base.annotation.NotNull;
+
+import com.ocean.common.base.annotation.NotNull;
 
 /**
  * 日期工具类.

@@ -5,7 +5,8 @@ import java.util.Date;
 
 import org.apache.commons.lang3.time.DurationFormatUtils;
 import org.apache.commons.lang3.time.FastDateFormat;
-import org.springside.modules.utils.base.annotation.NotNull;
+
+import com.ocean.common.base.annotation.NotNull;
 
 /**
  * Date的parse()与format(), 采用Apache Common Lang中线程安全, 性能更佳的FastDateFormat
