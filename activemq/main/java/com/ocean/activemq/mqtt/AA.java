@@ -1,4 +1,4 @@
-package com.ocean.activemq;
+package com.ocean.activemq.mqtt;
 
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
