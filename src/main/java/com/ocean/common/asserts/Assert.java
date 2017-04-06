@@ -120,7 +120,7 @@ public abstract class Assert {
 	}
 
 	/**
-	 *   text 不能为 null 且必须至少包含一个非空格的字符，否则抛出异常；
+	 * text 不能为 null 且必须至少包含一个非空格的字符，否则抛出异常；
 	 * 
 	 * <pre class="code">
 	 * Assert.hasText(name, "'name' must not be empty");
@@ -234,9 +234,8 @@ public abstract class Assert {
 	}
 
 	/**
-	 * map 
-	 * Assert that a Map contains entries; that is, it must not be {@code null}
-	 * and must contain at least one entry.
+	 * map Assert that a Map contains entries; that is, it must not be
+	 * {@code null} and must contain at least one entry.
 	 * 
 	 * <pre class="code">
 	 * Assert.notEmpty(map, "Map must contain entries");
@@ -256,7 +255,7 @@ public abstract class Assert {
 	}
 
 	/**
-	 *  如果 obj 不能被正确造型为 clazz 指定的类将抛出异常； 
+	 * 如果 obj 不能被正确造型为 clazz 指定的类将抛出异常；
 	 * 
 	 * <pre class="code">
 	 * Assert.instanceOf(Foo.class, foo, "Foo expected");
@@ -284,7 +283,7 @@ public abstract class Assert {
 	}
 
 	/**
-	 *  如果 obj 不能被正确造型为 clazz 指定的类将抛出异常； 
+	 * 如果 obj 不能被正确造型为 clazz 指定的类将抛出异常；
 	 * 
 	 * <pre class="code">
 	 * Assert.instanceOf(Foo.class, foo);

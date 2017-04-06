@@ -10,10 +10,9 @@ import java.util.Iterator;
  * 从Jodd整体复制，部分指定了index的操作不支持，如 add(index, element)
  * 
  * An extension of <code>ArrayList</code> that insures that all of the items
- * added are sorted. <b>This breaks original list contract!</b>.
- * A binary search method is used to provide a quick way to
- * auto sort this list.Note: Not all methods for adding and
- * removing elements are supported.
+ * added are sorted. <b>This breaks original list contract!</b>. A binary search
+ * method is used to provide a quick way to auto sort this list.Note: Not all
+ * methods for adding and removing elements are supported.
  */
 public class SortedArrayList<E> extends ArrayList<E> {
 
@@ -29,16 +28,16 @@ public class SortedArrayList<E> extends ArrayList<E> {
 	}
 
 	/**
-	 * Constructs a new <code>SortedArrayList</code> expecting
-	 * elements are comparable.
+	 * Constructs a new <code>SortedArrayList</code> expecting elements are
+	 * comparable.
 	 */
 	public SortedArrayList() {
 		comparator = null;
 	}
 
 	/**
-	 * Constructs a new <code>SortedArrayList</code> expecting
-	 * elements are comparable.
+	 * Constructs a new <code>SortedArrayList</code> expecting elements are
+	 * comparable.
 	 */
 	public SortedArrayList(Collection<? extends E> c) {
 		comparator = null;
@@ -60,8 +59,8 @@ public class SortedArrayList<E> extends ArrayList<E> {
 	 * using binary search. If the same item exist, it will be put to the end of
 	 * the range.
 	 * <p>
-	 * This method breaks original list contract since objects are not
-	 * added at the list end, but in sorted manner.
+	 * This method breaks original list contract since objects are not added at
+	 * the list end, but in sorted manner.
 	 */
 	@Override
 	public boolean add(E o) {
@@ -96,10 +95,12 @@ public class SortedArrayList<E> extends ArrayList<E> {
 		return findInsertionPoint(o, 0, size() - 1);
 	}
 
-	// ---------------------------------------------------------------- unsupported methods
+	// ----------------------------------------------------------------
+	// unsupported methods
 
 	/**
-	 * @throws UnsupportedOperationException This method not supported.
+	 * @throws UnsupportedOperationException
+	 *             This method not supported.
 	 */
 	@Override
 	@Deprecated
@@ -108,7 +109,8 @@ public class SortedArrayList<E> extends ArrayList<E> {
 	}
 
 	/**
-	 * @throws UnsupportedOperationException This method not supported.
+	 * @throws UnsupportedOperationException
+	 *             This method not supported.
 	 */
 	@Override
 	@Deprecated
@@ -117,7 +119,8 @@ public class SortedArrayList<E> extends ArrayList<E> {
 	}
 
 	/**
-	 * @throws UnsupportedOperationException This method not supported.
+	 * @throws UnsupportedOperationException
+	 *             This method not supported.
 	 */
 	@Override
 	@Deprecated
@@ -125,14 +128,13 @@ public class SortedArrayList<E> extends ArrayList<E> {
 		throw new UnsupportedOperationException();
 	}
 
-
 	// ---------------------------------------------------------------- sorting
 
 	/**
 	 * Compares two keys using the correct comparison method for this
 	 * collection.
 	 */
-	@SuppressWarnings( {"unchecked", "rawtypes"})
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	protected int compare(E k1, E k2) {
 		if (comparator == null) {
 			return ((Comparable) k1).compareTo(k2);
@@ -141,8 +143,8 @@ public class SortedArrayList<E> extends ArrayList<E> {
 	}
 
 	/**
-	 * Conducts a binary search to find the index where Object
-	 * should be inserted.
+	 * Conducts a binary search to find the index where Object should be
+	 * inserted.
 	 */
 	protected int findInsertionPoint(E o, int low, int high) {
 

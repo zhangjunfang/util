@@ -19,7 +19,8 @@ import com.ocean.common.concurrent.ext.threadpool.QueuableCachedThreadPool.Contr
 /**
  * ThreadPool创建的工具类.
  * 
- * 对比JDK Executors中的newFixedThreadPool(), newCachedThreadPool(),newScheduledThreadPool, 提供更多有用的配置项.
+ * 对比JDK Executors中的newFixedThreadPool(),
+ * newCachedThreadPool(),newScheduledThreadPool, 提供更多有用的配置项.
  * 
  * 另包含了移植自Tomcat的QueuableCachedPool.
  * 
@@ -29,7 +30,8 @@ import com.ocean.common.concurrent.ext.threadpool.QueuableCachedThreadPool.Contr
  * ExecutorService ExecutorService = new FixedThreadPoolBuilder().setPoolSize(10).build();
  * </pre>
  * 
- * 参考文章 《Java ThreadPool的正确打开方式》http://ocean1978.blogcn.com/articles/java-threadpool.html
+ * 参考文章 《Java
+ * ThreadPool的正确打开方式》http://ocean1978.blogcn.com/articles/java-threadpool.html
  */
 public class ThreadPoolBuilder {
 
@@ -66,7 +68,8 @@ public class ThreadPoolBuilder {
 	/**
 	 * 创建FixedThreadPool.
 	 * 
-	 * 1. 任务提交时, 如果线程数还没达到poolSize即创建新线程并绑定任务(即poolSize次提交后线程总数必达到poolSize，不会重用之前的线程)
+	 * 1. 任务提交时,
+	 * 如果线程数还没达到poolSize即创建新线程并绑定任务(即poolSize次提交后线程总数必达到poolSize，不会重用之前的线程)
 	 * 
 	 * poolSize默认为1，即singleThreadPool.
 	 * 
@@ -74,7 +77,8 @@ public class ThreadPoolBuilder {
 	 * 
 	 * Queue默认为无限长的LinkedBlockingQueue, 也可以设置queueSize换成有界的队列.
 	 * 
-	 * 如果使用有界队列, 当队列满了之后,会调用RejectHandler进行处理, 默认为AbortPolicy，抛出RejectedExecutionException异常.
+	 * 如果使用有界队列, 当队列满了之后,会调用RejectHandler进行处理,
+	 * 默认为AbortPolicy，抛出RejectedExecutionException异常.
 	 * 其他可选的Policy包括静默放弃当前任务(Discard)，放弃Queue里最老的任务(DisacardOldest)，或由主线程来直接执行(CallerRuns).
 	 * 
 	 * 3. 因为线程全部为core线程，所以不会在空闲回收.
@@ -160,19 +164,23 @@ public class ThreadPoolBuilder {
 	/**
 	 * 创建CachedThreadPool.
 	 * 
-	 * 1. 任务提交时, 如果线程数还没达到minSize即创建新线程并绑定任务(即minSize次提交后线程总数必达到minSize, 不会重用之前的线程)
+	 * 1. 任务提交时, 如果线程数还没达到minSize即创建新线程并绑定任务(即minSize次提交后线程总数必达到minSize,
+	 * 不会重用之前的线程)
 	 * 
 	 * minSize默认为0, 可设置保证有基本的线程处理请求不被回收.
 	 * 
-	 * 2. 第minSize次任务提交后, 新增任务提交进SynchronousQueue后，如果没有空闲线程立刻处理，则会创建新的线程, 直到总线程数达到上限.
+	 * 2. 第minSize次任务提交后, 新增任务提交进SynchronousQueue后，如果没有空闲线程立刻处理，则会创建新的线程,
+	 * 直到总线程数达到上限.
 	 * 
 	 * maxSize默认为Integer.Max, 可进行设置.
 	 * 
-	 * 如果设置了maxSize, 当总线程数达到上限, 会调用RejectHandler进行处理, 默认为AbortPolicy, 抛出RejectedExecutionException异常.
+	 * 如果设置了maxSize, 当总线程数达到上限, 会调用RejectHandler进行处理, 默认为AbortPolicy,
+	 * 抛出RejectedExecutionException异常.
 	 * 其他可选的Policy包括静默放弃当前任务(Discard)，或由主线程来直接执行(CallerRuns).
 	 * 
-	 * 3. minSize以上, maxSize以下的线程, 如果在keepAliveTime中都poll不到任务执行将会被结束掉, keeAliveTimeJDK默认为10秒.
-	 * JDK默认值60秒太高，如高达1000线程时，要低于16QPS时才会开始回收线程, 因此改为默认10秒.
+	 * 3. minSize以上, maxSize以下的线程, 如果在keepAliveTime中都poll不到任务执行将会被结束掉,
+	 * keeAliveTimeJDK默认为10秒. JDK默认值60秒太高，如高达1000线程时，要低于16QPS时才会开始回收线程,
+	 * 因此改为默认10秒.
 	 */
 	public static class CachedThreadPoolBuilder {
 

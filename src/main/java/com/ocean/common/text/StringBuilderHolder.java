@@ -1,13 +1,15 @@
 package com.ocean.common.text;
 
 /**
- * 参考Netty的InternalThreadLocalMap 与 BigDecimal, 放在threadLocal中重用的StringBuilder, 节约StringBuilder内部的char[]
+ * 参考Netty的InternalThreadLocalMap 与 BigDecimal, 放在threadLocal中重用的StringBuilder,
+ * 节约StringBuilder内部的char[]
  * 
  * 参考文章：《StringBuilder在高性能场景下的正确用法》http://ocean1978.blogcn.com/articles/stringbuilder.html
  * 
  * 不过仅在String对象较大时才有明显效果，否则抵不上访问ThreadLocal的消耗.
  * 
- * 当StringBuilder在使用过程中，会调用其他可能也使用StringBuilderHolder的子函数时，需要创建独立的Holder, 否则使用公共的Holder
+ * 当StringBuilder在使用过程中，会调用其他可能也使用StringBuilderHolder的子函数时，需要创建独立的Holder,
+ * 否则使用公共的Holder
  * 
  * 注意：在Netty环境中，使用Netty提供的基于FastThreadLocal的版本。
  *
@@ -37,7 +39,8 @@ public class StringBuilderHolder {
 	 * 
 	 * 用于StringBuilder在使用过程中，会调用其他可能也使用StringBuilderHolder的子函数.
 	 * 
-	 * @param initSize StringBulder的初始大小, 建议512,如果容量不足将进行扩容，扩容后的数组将一直保留.
+	 * @param initSize
+	 *            StringBulder的初始大小, 建议512,如果容量不足将进行扩容，扩容后的数组将一直保留.
 	 */
 	public StringBuilderHolder(int initSize) {
 		this.initSize = initSize;

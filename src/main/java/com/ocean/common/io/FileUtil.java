@@ -33,8 +33,6 @@ import com.ocean.common.text.Charsets;
  * @author ocean
  */
 public class FileUtil {
-	
-	
 
 	//////// 文件读写//////
 
@@ -79,7 +77,7 @@ public class FileUtil {
 	public static InputStream asInputStream(String fileName) throws IOException {
 		return new FileInputStream(getFileByPath(fileName));
 	}
-	
+
 	/**
 	 * 打开文件为InputStream
 	 */
@@ -93,7 +91,7 @@ public class FileUtil {
 	public static OutputStream asOututStream(String fileName) throws IOException {
 		return new FileOutputStream(getFileByPath(fileName));
 	}
-	
+
 	/**
 	 * 打开文件为OutputStream
 	 */
@@ -120,8 +118,10 @@ public class FileUtil {
 	/**
 	 * 复制文件或目录
 	 * 
-	 * @param from 如果为null，或者是不存在的文件或目录，抛出异常.
-	 * @param to 如果为null，或者from是目录而to是已存在文件，或相反
+	 * @param from
+	 *            如果为null，或者是不存在的文件或目录，抛出异常.
+	 * @param to
+	 *            如果为null，或者from是目录而to是已存在文件，或相反
 	 */
 	public static void copy(@NotNull File from, @NotNull File to) throws IOException {
 		Validate.notNull(from);
@@ -137,8 +137,10 @@ public class FileUtil {
 	/**
 	 * 文件复制.
 	 * 
-	 * @param from 如果为nll，或文件不存在或者是目录，，抛出异常
-	 * @param to 如果to为null，或文件存在但是一个目录，抛出异常
+	 * @param from
+	 *            如果为nll，或文件不存在或者是目录，，抛出异常
+	 * @param to
+	 *            如果to为null，或文件存在但是一个目录，抛出异常
 	 */
 	public static void copyFile(@NotNull File from, @NotNull File to) throws IOException {
 		Validate.isTrue(isFileExists(from), from + " is not exist or not a file");

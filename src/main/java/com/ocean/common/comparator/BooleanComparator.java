@@ -29,35 +29,35 @@ import java.util.Comparator;
 public final class BooleanComparator implements Comparator<Boolean>, Serializable {
 
 	/**
-	 * A shared default instance of this comparator, treating true lower
-	 * than false.
+	 * A shared default instance of this comparator, treating true lower than
+	 * false.
 	 */
 	public static final BooleanComparator TRUE_LOW = new BooleanComparator(true);
 
 	/**
-	 * A shared default instance of this comparator, treating true higher
-	 * than false.
+	 * A shared default instance of this comparator, treating true higher than
+	 * false.
 	 */
 	public static final BooleanComparator TRUE_HIGH = new BooleanComparator(false);
 
-
 	private final boolean trueLow;
 
-
 	/**
-	 * Create a BooleanComparator that sorts boolean values based on
-	 * the provided flag.
-	 * <p>Alternatively, you can use the default shared instances:
+	 * Create a BooleanComparator that sorts boolean values based on the
+	 * provided flag.
+	 * <p>
+	 * Alternatively, you can use the default shared instances:
 	 * {@code BooleanComparator.TRUE_LOW} and
 	 * {@code BooleanComparator.TRUE_HIGH}.
-	 * @param trueLow whether to treat true as lower or higher than false
+	 * 
+	 * @param trueLow
+	 *            whether to treat true as lower or higher than false
 	 * @see #TRUE_LOW
 	 * @see #TRUE_HIGH
 	 */
 	public BooleanComparator(boolean trueLow) {
 		this.trueLow = trueLow;
 	}
-
 
 	@Override
 	public int compare(Boolean v1, Boolean v2) {

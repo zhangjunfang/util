@@ -22,7 +22,8 @@ public class Sampler {
 	}
 
 	/**
-	 * @param selectPercent 采样率，在0-100 之间，可以有小数位
+	 * @param selectPercent
+	 *            采样率，在0-100 之间，可以有小数位
 	 */
 	protected Sampler(double selectPercent) {
 		Validate.isTrue((selectPercent >= 0) && (selectPercent <= 100),

@@ -41,7 +41,9 @@ public class ThreadPoolUtil {
 	 * 返回线程最后是否被中断.
 	 * 
 	 * 使用了Guava的工具类
-	 * @see MoreExecutors#shutdownAndAwaitTermination(ExecutorService, long, TimeUnit)
+	 * 
+	 * @see MoreExecutors#shutdownAndAwaitTermination(ExecutorService, long,
+	 *      TimeUnit)
 	 */
 	public static boolean gracefulShutdown(@Nullable ExecutorService threadPool, int shutdownTimeoutMills) {
 		return threadPool != null
@@ -88,7 +90,8 @@ public class ThreadPoolUtil {
 	}
 
 	/**
-	 * 保证不会有Exception抛出到线程池的Runnable包裹类，防止用户没有捕捉异常导致中断了线程池中的线程, 使得SchedulerService无法执行. 在无法控制第三方包的Runnalbe实现时，使用本类进行包裹.
+	 * 保证不会有Exception抛出到线程池的Runnable包裹类，防止用户没有捕捉异常导致中断了线程池中的线程,
+	 * 使得SchedulerService无法执行. 在无法控制第三方包的Runnalbe实现时，使用本类进行包裹.
 	 */
 	public static class SafeRunnable implements Runnable {
 
@@ -106,7 +109,8 @@ public class ThreadPoolUtil {
 			try {
 				runnable.run();
 			} catch (Throwable e) {
-				// catch any exception, because the scheduled thread will break if the exception thrown to outside.
+				// catch any exception, because the scheduled thread will break
+				// if the exception thrown to outside.
 				logger.error("Unexpected error occurred in task", e);
 			}
 		}

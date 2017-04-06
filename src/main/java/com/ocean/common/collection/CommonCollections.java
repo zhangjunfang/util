@@ -23,7 +23,8 @@ public class CommonCollections {
 	 * 
 	 * 普通HashMap，需要将多个Key拼装成一个字符串作为主键，因此MultiKeyMap尤其适合于这几个Key的类型不是String时.
 	 * 
-	 * @param map 被包裹的底层HashMap，可先定义HashMap的初始大小和加载因子，可使用类型为LinkedMap
+	 * @param map
+	 *            被包裹的底层HashMap，可先定义HashMap的初始大小和加载因子，可使用类型为LinkedMap
 	 */
 	public static <K, V> MultiKeyMap<K, V> multiKeyMap(final AbstractHashedMap<MultiKey<? extends K>, V> map) {
 		return MultiKeyMap.multiKeyMap(map);
@@ -41,7 +42,8 @@ public class CommonCollections {
 	/**
 	 * 队列内元素唯一的List, 内部集成了一个HashSet来实现.
 	 * 
-	 * @param list 被包裹的底层List，可先定义ArrayList的初始长度等.
+	 * @param list
+	 *            被包裹的底层List，可先定义ArrayList的初始长度等.
 	 */
 	public static <E> SetUniqueList<E> setUniqueList(final List<E> list) {
 		return SetUniqueList.setUniqueList(list);

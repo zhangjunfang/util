@@ -37,8 +37,10 @@ public class Platforms {
 	public static final String JAVA_HOME = SystemUtils.JAVA_HOME;
 
 	// Java版本
-	public static final String JAVA_SPECIFICATION_VERSION = SystemUtils.JAVA_SPECIFICATION_VERSION; // e.g. 1.8
-	public static final String JAVA_VERSION = SystemUtils.JAVA_VERSION; // e.g. 1.8.0_102
+	public static final String JAVA_SPECIFICATION_VERSION = SystemUtils.JAVA_SPECIFICATION_VERSION; // e.g.
+																									// 1.8
+	public static final String JAVA_VERSION = SystemUtils.JAVA_VERSION; // e.g.
+																		// 1.8.0_102
 	public static final boolean IS_JAVA6 = SystemUtils.IS_JAVA_1_6;
 	public static final boolean IS_JAVA7 = SystemUtils.IS_JAVA_1_7;
 	public static final boolean IS_JAVA8 = SystemUtils.IS_JAVA_1_8;

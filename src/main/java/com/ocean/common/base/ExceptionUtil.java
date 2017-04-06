@@ -50,7 +50,8 @@ public class ExceptionUtil {
 	/**
 	 * 如果是著名的包裹类，从cause中获得真正异常. 其他异常则不变.
 	 * 
-	 * Future中使用的ExecutionException 与 反射时定义的InvocationTargetException， 真正的异常都封装在Cause中
+	 * Future中使用的ExecutionException 与 反射时定义的InvocationTargetException，
+	 * 真正的异常都封装在Cause中
 	 * 
 	 * 前面 unchecked() 使用的UncheckedException同理.
 	 * 

@@ -258,7 +258,7 @@ public class NumberUtil {
 	 * 安全的将小于Integer.MAX的long转为int，否则抛出IllegalArgumentException异常
 	 */
 	public static int toInt32(long x) {
-		if ((int) x == x){
+		if ((int) x == x) {
 			return (int) x;
 		}
 		throw new IllegalArgumentException("Int " + x + " out of range");

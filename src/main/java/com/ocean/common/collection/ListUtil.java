@@ -320,7 +320,8 @@ public class ListUtil {
 	 * 
 	 * from Apache Common Collection4 ListUtils，但其做了不合理的去重，因此重新改为性能较低但不去重的版本
 	 * 
-	 * 与List.retainAll()相比，考虑了的List中相同元素出现的次数, 如"a"在list1出现两次，而在list2中只出现一次，则交集里会保留一个"a".
+	 * 与List.retainAll()相比，考虑了的List中相同元素出现的次数,
+	 * 如"a"在list1出现两次，而在list2中只出现一次，则交集里会保留一个"a".
 	 */
 	public static <T> List<T> intersection(final List<? extends T> list1, final List<? extends T> list2) {
 		List<? extends T> smaller = list1;

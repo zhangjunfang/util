@@ -33,21 +33,25 @@ import com.ocean.common.base.Platforms;
  * 
  * 从Jodd移植，匹配以通配符比较字符串（比正则表达式简单），以及Ant Path风格如比较目录Path
  * 
- * Checks whether a string or path matches a given wildcard pattern. Possible patterns allow to match single characters
- * ('?') or any count of characters ('*'). Wildcard characters can be escaped (by an '\'). When matching path, deep tree
- * wildcard also can be used ('**').
+ * Checks whether a string or path matches a given wildcard pattern. Possible
+ * patterns allow to match single characters ('?') or any count of characters
+ * ('*'). Wildcard characters can be escaped (by an '\'). When matching path,
+ * deep tree wildcard also can be used ('**').
  * <p>
- * This method uses recursive matching, as in linux or windows. regexp works the same. This method is very fast,
- * comparing to similar implementations.
+ * This method uses recursive matching, as in linux or windows. regexp works the
+ * same. This method is very fast, comparing to similar implementations.
  */
 public class WildcardMatcher {
 
 	/**
 	 * Checks whether a string matches a given wildcard pattern.
 	 *
-	 * @param string input string
-	 * @param pattern pattern to match
-	 * @return <code>true</code> if string matches the pattern, otherwise <code>false</code>
+	 * @param string
+	 *            input string
+	 * @param pattern
+	 *            pattern to match
+	 * @return <code>true</code> if string matches the pattern, otherwise
+	 *         <code>false</code>
 	 */
 	public static boolean match(CharSequence string, CharSequence pattern) {
 		return match(string, pattern, 0, 0);
@@ -69,7 +73,8 @@ public class WildcardMatcher {
 		while (true) {
 
 			// check if end of string and/or pattern occurred
-			if ((sNdx >= sLen)) { // end of string still may have pending '*' in pattern
+			if ((sNdx >= sLen)) { // end of string still may have pending '*' in
+									// pattern
 				while ((pNdx < pLen) && (pattern.charAt(pNdx) == '*')) {
 					pNdx++;
 				}
@@ -98,14 +103,16 @@ public class WildcardMatcher {
 					if (pNdx + 1 < pLen) {
 						pNext = pattern.charAt(pNdx + 1);
 					}
-					if (pNext == '*') { // double '*' have the same effect as one '*'
+					if (pNext == '*') { // double '*' have the same effect as
+										// one '*'
 						pNdx++;
 						continue;
 					}
 					int i;
 					pNdx++;
 
-					// find recursively if there is any substring from the end of the
+					// find recursively if there is any substring from the end
+					// of the
 					// line that matches the rest of the pattern !!!
 					for (i = string.length(); i >= sNdx; i--) {
 						if (match(string, pattern, i, pNdx)) {
@@ -129,10 +136,13 @@ public class WildcardMatcher {
 		}
 	}
 
-	// ---------------------------------------------------------------- utilities
+	// ----------------------------------------------------------------
+	// utilities
 
 	/**
-	 * Matches string to at least one pattern. Returns index of matched pattern, or <code>-1</code> otherwise.
+	 * Matches string to at least one pattern. Returns index of matched pattern,
+	 * or <code>-1</code> otherwise.
+	 * 
 	 * @see #match(CharSequence, CharSequence)
 	 */
 	public static int matchOne(String src, String[] patterns) {
@@ -145,7 +155,9 @@ public class WildcardMatcher {
 	}
 
 	/**
-	 * Matches path to at least one pattern. Returns index of matched pattern or <code>-1</code> otherwise.
+	 * Matches path to at least one pattern. Returns index of matched pattern or
+	 * <code>-1</code> otherwise.
+	 * 
 	 * @see #matchPath(String, String)
 	 */
 	public static int matchPathOne(String path, String[] patterns) {
@@ -163,8 +175,9 @@ public class WildcardMatcher {
 	protected static final String PATH_SEPARATORS = "/\\";
 
 	/**
-	 * Matches path against pattern using *, ? and ** wildcards. Both path and the pattern are tokenized on path
-	 * separators (both \ and /). '**' represents deep tree wildcard, as in Ant.
+	 * Matches path against pattern using *, ? and ** wildcards. Both path and
+	 * the pattern are tokenized on path separators (both \ and /). '**'
+	 * represents deep tree wildcard, as in Ant.
 	 */
 	public static boolean matchPath(String path, String pattern) {
 		String[] pathElements = StringUtils.split(path, Platforms.FILE_PATH_SEPARATOR_CHAR);
@@ -181,7 +194,9 @@ public class WildcardMatcher {
 		int tokNdxStart = 0;
 		int tokNdxEnd = tokens.length - 1;
 
-		while ((patNdxStart <= patNdxEnd) && (tokNdxStart <= tokNdxEnd)) { // find first **
+		while ((patNdxStart <= patNdxEnd) && (tokNdxStart <= tokNdxEnd)) { // find
+																			// first
+																			// **
 			String patDir = patterns[patNdxStart];
 			if (patDir.equals(PATH_MATCH)) {
 				break;
@@ -193,7 +208,8 @@ public class WildcardMatcher {
 			tokNdxStart++;
 		}
 		if (tokNdxStart > tokNdxEnd) {
-			for (int i = patNdxStart; i <= patNdxEnd; i++) { // string is finished
+			for (int i = patNdxStart; i <= patNdxEnd; i++) { // string is
+																// finished
 				if (!patterns[i].equals(PATH_MATCH)) {
 					return false;
 				}
@@ -204,7 +220,10 @@ public class WildcardMatcher {
 			return false; // string is not finished, but pattern is
 		}
 
-		while ((patNdxStart <= patNdxEnd) && (tokNdxStart <= tokNdxEnd)) { // to the last **
+		while ((patNdxStart <= patNdxEnd) && (tokNdxStart <= tokNdxEnd)) { // to
+																			// the
+																			// last
+																			// **
 			String patDir = patterns[patNdxEnd];
 			if (patDir.equals(PATH_MATCH)) {
 				break;
@@ -216,7 +235,8 @@ public class WildcardMatcher {
 			tokNdxEnd--;
 		}
 		if (tokNdxStart > tokNdxEnd) {
-			for (int i = patNdxStart; i <= patNdxEnd; i++) { // string is finished
+			for (int i = patNdxStart; i <= patNdxEnd; i++) { // string is
+																// finished
 				if (!patterns[i].equals(PATH_MATCH)) {
 					return false;
 				}
@@ -236,7 +256,8 @@ public class WildcardMatcher {
 				patNdxStart++; // skip **/** situation
 				continue;
 			}
-			// find the pattern between padIdxStart & padIdxTmp in str between strIdxStart & strIdxEnd
+			// find the pattern between padIdxStart & padIdxTmp in str between
+			// strIdxStart & strIdxEnd
 			int patLength = (patIdxTmp - patNdxStart - 1);
 			int strLength = (tokNdxEnd - tokNdxStart + 1);
 			int ndx = -1;

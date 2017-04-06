@@ -13,6 +13,7 @@
  * the License.
  */
 package com.ocean.common.collection.type.primitive;
+
 import java.util.AbstractCollection;
 import java.util.AbstractSet;
 import java.util.Arrays;
@@ -29,12 +30,14 @@ import com.ocean.common.number.MathUtil;
  * 
  * 原子类型集合类有多个实现，选择Netty是因为有在实战中使用.
  * 
- * A hash map implementation of {@link IntObjectMap} that uses open addressing for keys. To minimize the memory
- * footprint, this class uses open addressing rather than chaining. Collisions are resolved using linear probing.
- * Deletions implement compaction, so cost of remove can approach O(N) for full maps, which makes a small loadFactor
- * recommended.
+ * A hash map implementation of {@link IntObjectMap} that uses open addressing
+ * for keys. To minimize the memory footprint, this class uses open addressing
+ * rather than chaining. Collisions are resolved using linear probing. Deletions
+ * implement compaction, so cost of remove can approach O(N) for full maps,
+ * which makes a small loadFactor recommended.
  *
- * @param <V> The value type stored in the map.
+ * @param <V>
+ *            The value type stored in the map.
  */
 public class IntObjectHashMap<V> implements IntObjectMap<V> {
 
@@ -45,8 +48,9 @@ public class IntObjectHashMap<V> implements IntObjectMap<V> {
 	public static final float DEFAULT_LOAD_FACTOR = 0.5f;
 
 	/**
-	 * Placeholder for null values, so we can use the actual null to mean available. (Better than using a placeholder
-	 * for available: less references for GC processing.)
+	 * Placeholder for null values, so we can use the actual null to mean
+	 * available. (Better than using a placeholder for available: less
+	 * references for GC processing.)
 	 */
 	private static final Object NULL_VALUE = new Object();
 
@@ -80,8 +84,10 @@ public class IntObjectHashMap<V> implements IntObjectMap<V> {
 
 	public IntObjectHashMap(int initialCapacity, float loadFactor) {
 		if (loadFactor <= 0.0f || loadFactor > 1.0f) {
-			// Cannot exceed 1 because we can never store more than capacity elements;
-			// using a bigger loadFactor would trigger rehashing before the desired load is reached.
+			// Cannot exceed 1 because we can never store more than capacity
+			// elements;
+			// using a bigger loadFactor would trigger rehashing before the
+			// desired load is reached.
 			throw new IllegalArgumentException("loadFactor must be > 0 and <= 1");
 		}
 
@@ -138,7 +144,8 @@ public class IntObjectHashMap<V> implements IntObjectMap<V> {
 
 			// Conflict, keep probing ...
 			if ((index = probeNext(index)) == startIndex) {
-				// Can only happen if the map was full at MAX_ARRAY_SIZE and couldn't grow.
+				// Can only happen if the map was full at MAX_ARRAY_SIZE and
+				// couldn't grow.
 				throw new IllegalStateException("Unable to insert");
 			}
 		}
@@ -204,7 +211,8 @@ public class IntObjectHashMap<V> implements IntObjectMap<V> {
 		@SuppressWarnings("unchecked")
 		V v1 = toInternal((V) value);
 		for (V v2 : values) {
-			// The map supports null values; this will be matched as NULL_VALUE.equals(NULL_VALUE).
+			// The map supports null values; this will be matched as
+			// NULL_VALUE.equals(NULL_VALUE).
 			if (v2 != null && v2.equals(v1)) {
 				return true;
 			}
@@ -251,18 +259,27 @@ public class IntObjectHashMap<V> implements IntObjectMap<V> {
 
 	@Override
 	public int hashCode() {
-		// Hashcode is based on all non-zero, valid keys. We have to scan the whole keys
-		// array, which may have different lengths for two maps of same size(), so the
+		// Hashcode is based on all non-zero, valid keys. We have to scan the
+		// whole keys
+		// array, which may have different lengths for two maps of same size(),
+		// so the
 		// capacity cannot be used as input for hashing but the size can.
 		int hash = size;
 		for (int key : keys) {
-			// 0 can be a valid key or unused slot, but won't impact the hashcode in either case.
-			// This way we can use a cheap loop without conditionals, or hard-to-unroll operations,
-			// or the devastatingly bad memory locality of visiting value objects.
-			// Also, it's important to use a hash function that does not depend on the ordering
-			// of terms, only their values; since the map is an unordered collection and
-			// entries can end up in different positions in different maps that have the same
-			// elements, but with different history of puts/removes, due to conflicts.
+			// 0 can be a valid key or unused slot, but won't impact the
+			// hashcode in either case.
+			// This way we can use a cheap loop without conditionals, or
+			// hard-to-unroll operations,
+			// or the devastatingly bad memory locality of visiting value
+			// objects.
+			// Also, it's important to use a hash function that does not depend
+			// on the ordering
+			// of terms, only their values; since the map is an unordered
+			// collection and
+			// entries can end up in different positions in different maps that
+			// have the same
+			// elements, but with different history of puts/removes, due to
+			// conflicts.
 			hash ^= hashCode(key);
 		}
 		return hash;
@@ -333,10 +350,13 @@ public class IntObjectHashMap<V> implements IntObjectMap<V> {
 	}
 
 	/**
-	 * Locates the index for the given key. This method probes using double hashing.
+	 * Locates the index for the given key. This method probes using double
+	 * hashing.
 	 *
-	 * @param key the key for an entry in the map.
-	 * @return the index where the key was found, or {@code -1} if no entry is found for that key.
+	 * @param key
+	 *            the key for an entry in the map.
+	 * @return the index where the key was found, or {@code -1} if no entry is
+	 *         found for that key.
 	 */
 	private int indexOf(int key) {
 		int startIndex = hashIndex(key);
@@ -344,7 +364,8 @@ public class IntObjectHashMap<V> implements IntObjectMap<V> {
 
 		for (;;) {
 			if (values[index] == null) {
-				// It's available, so no chance that this value exists anywhere in the map.
+				// It's available, so no chance that this value exists anywhere
+				// in the map.
 				return -1;
 			}
 			if (key == keys[index]) {
@@ -362,7 +383,8 @@ public class IntObjectHashMap<V> implements IntObjectMap<V> {
 	 * Returns the hashed index for the given key.
 	 */
 	private int hashIndex(int key) {
-		// The array lengths are always a power of two, so we can use a bitmask to stay inside the array bounds.
+		// The array lengths are always a power of two, so we can use a bitmask
+		// to stay inside the array bounds.
 		return hashCode(key) & mask;
 	}
 
@@ -377,12 +399,14 @@ public class IntObjectHashMap<V> implements IntObjectMap<V> {
 	 * Get the next sequential index after {@code index} and wraps if necessary.
 	 */
 	private int probeNext(int index) {
-		// The array lengths are always a power of two, so we can use a bitmask to stay inside the array bounds.
+		// The array lengths are always a power of two, so we can use a bitmask
+		// to stay inside the array bounds.
 		return (index + 1) & mask;
 	}
 
 	/**
-	 * Grows the map size after an insertion. If necessary, performs a rehash of the map.
+	 * Grows the map size after an insertion. If necessary, performs a rehash of
+	 * the map.
 	 */
 	private void growSize() {
 		size++;
@@ -398,30 +422,38 @@ public class IntObjectHashMap<V> implements IntObjectMap<V> {
 	}
 
 	/**
-	 * Removes entry at the given index position. Also performs opportunistic, incremental rehashing if necessary to not
-	 * break conflict chains.
+	 * Removes entry at the given index position. Also performs opportunistic,
+	 * incremental rehashing if necessary to not break conflict chains.
 	 *
-	 * @param index the index position of the element to remove.
-	 * @return {@code true} if the next item was moved back. {@code false} otherwise.
+	 * @param index
+	 *            the index position of the element to remove.
+	 * @return {@code true} if the next item was moved back. {@code false}
+	 *         otherwise.
 	 */
 	private boolean removeAt(final int index) {
 		--size;
-		// Clearing the key is not strictly necessary (for GC like in a regular collection),
-		// but recommended for security. The memory location is still fresh in the cache anyway.
+		// Clearing the key is not strictly necessary (for GC like in a regular
+		// collection),
+		// but recommended for security. The memory location is still fresh in
+		// the cache anyway.
 		keys[index] = 0;
 		values[index] = null;
 
-		// In the interval from index to the next available entry, the arrays may have entries
-		// that are displaced from their base position due to prior conflicts. Iterate these
+		// In the interval from index to the next available entry, the arrays
+		// may have entries
+		// that are displaced from their base position due to prior conflicts.
+		// Iterate these
 		// entries and move them back if possible, optimizing future lookups.
-		// Knuth Section 6.4 Algorithm R, also used by the JDK's IdentityHashMap.
+		// Knuth Section 6.4 Algorithm R, also used by the JDK's
+		// IdentityHashMap.
 
 		boolean movedBack = false;
 		int nextFree = index;
 		for (int i = probeNext(index); values[i] != null; i = probeNext(i)) {
 			int bucket = hashIndex(keys[i]);
 			if (i < bucket && (bucket <= nextFree || nextFree <= i) || bucket <= nextFree && nextFree <= i) {
-				// Move the displaced entry "back" to the first available position.
+				// Move the displaced entry "back" to the first available
+				// position.
 				keys[nextFree] = keys[i];
 				values[nextFree] = values[i];
 				movedBack = true;
@@ -438,7 +470,8 @@ public class IntObjectHashMap<V> implements IntObjectMap<V> {
 	 * Calculates the maximum size allowed before rehashing.
 	 */
 	private int calcMaxSize(int capacity) {
-		// Clip the upper bound so that there will always be at least one available slot.
+		// Clip the upper bound so that there will always be at least one
+		// available slot.
 		int upperBound = capacity - 1;
 		return Math.min(upperBound, (int) (capacity * loadFactor));
 	}
@@ -446,7 +479,8 @@ public class IntObjectHashMap<V> implements IntObjectMap<V> {
 	/**
 	 * Rehashes the map for the given capacity.
 	 *
-	 * @param newCapacity the new capacity for the map.
+	 * @param newCapacity
+	 *            the new capacity for the map.
 	 */
 	private void rehash(int newCapacity) {
 		int[] oldKeys = keys;
@@ -476,7 +510,8 @@ public class IntObjectHashMap<V> implements IntObjectMap<V> {
 						break;
 					}
 
-					// Conflict, keep probing. Can wrap around, but never reaches startIndex again.
+					// Conflict, keep probing. Can wrap around, but never
+					// reaches startIndex again.
 					index = probeNext(index);
 				}
 			}
@@ -505,8 +540,9 @@ public class IntObjectHashMap<V> implements IntObjectMap<V> {
 	}
 
 	/**
-	 * Helper method called by {@link #toString()} in order to convert a single map key into a string. This is protected
-	 * to allow subclasses to override the appearance of a given key.
+	 * Helper method called by {@link #toString()} in order to convert a single
+	 * map key into a string. This is protected to allow subclasses to override
+	 * the appearance of a given key.
 	 */
 	protected String keyToString(int key) {
 		return Integer.toString(key);
@@ -588,7 +624,8 @@ public class IntObjectHashMap<V> implements IntObjectMap<V> {
 	}
 
 	/**
-	 * Iterator over primitive entries. Entry key/values are overwritten by each call to {@link #next()}.
+	 * Iterator over primitive entries. Entry key/values are overwritten by each
+	 * call to {@link #next()}.
 	 */
 	private final class PrimitiveIterator implements Iterator<PrimitiveEntry<V>>, PrimitiveEntry<V> {
 		private int prevIndex = -1;
@@ -620,7 +657,8 @@ public class IntObjectHashMap<V> implements IntObjectMap<V> {
 			prevIndex = nextIndex;
 			scanNext();
 
-			// Always return the same Entry object, just change its index each time.
+			// Always return the same Entry object, just change its index each
+			// time.
 			entryIndex = prevIndex;
 			return this;
 		}
@@ -631,16 +669,21 @@ public class IntObjectHashMap<V> implements IntObjectMap<V> {
 				throw new IllegalStateException("next must be called before each remove.");
 			}
 			if (removeAt(prevIndex)) {
-				// removeAt may move elements "back" in the array if they have been displaced because their spot in the
-				// array was occupied when they were inserted. If this occurs then the nextIndex is now invalid and
-				// should instead point to the prevIndex which now holds an element which was "moved back".
+				// removeAt may move elements "back" in the array if they have
+				// been displaced because their spot in the
+				// array was occupied when they were inserted. If this occurs
+				// then the nextIndex is now invalid and
+				// should instead point to the prevIndex which now holds an
+				// element which was "moved back".
 				nextIndex = prevIndex;
 			}
 			prevIndex = -1;
 		}
 
-		// Entry implementation. Since this implementation uses a single Entry, we coalesce that
-		// into the Iterator object (potentially making loop optimization much easier).
+		// Entry implementation. Since this implementation uses a single Entry,
+		// we coalesce that
+		// into the Iterator object (potentially making loop optimization much
+		// easier).
 
 		@Override
 		public int key() {

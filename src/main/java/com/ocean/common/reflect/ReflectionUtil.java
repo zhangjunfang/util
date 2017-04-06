@@ -18,7 +18,8 @@ import com.ocean.common.base.ExceptionUtil.UncheckedException;
  * 
  * 1. 对于构造函数，直接使用本类即可
  * 
- * 2. 对于方法调用，本类全部是一次性调用的简化方法，如果考虑性能，对反复调用的方法应使用 MethodInvoker 及 FastMethodInvoker.
+ * 2. 对于方法调用，本类全部是一次性调用的简化方法，如果考虑性能，对反复调用的方法应使用 MethodInvoker 及
+ * FastMethodInvoker.
  * 
  * 3. 对于直接属性访问，恰当使用本类中的一次性调用，和基于预先获取的Field对象反复调用两种做法.
  */

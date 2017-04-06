@@ -29,11 +29,13 @@ import java.io.IOException;
 public abstract class FileSystemUtils {
 
 	/**
-	 * Delete the supplied {@link File} - for directories,
-	 * recursively delete any nested directories or files as well.
-	 * @param root the root {@code File} to delete
-	 * @return {@code true} if the {@code File} was deleted,
-	 * otherwise {@code false}
+	 * Delete the supplied {@link File} - for directories, recursively delete
+	 * any nested directories or files as well.
+	 * 
+	 * @param root
+	 *            the root {@code File} to delete
+	 * @return {@code true} if the {@code File} was deleted, otherwise
+	 *         {@code false}
 	 */
 	public static boolean deleteRecursively(File root) {
 		if (root != null && root.exists()) {
@@ -51,24 +53,33 @@ public abstract class FileSystemUtils {
 	}
 
 	/**
-	 * Recursively copy the contents of the {@code src} file/directory
-	 * to the {@code dest} file/directory.
-	 * @param src the source directory
-	 * @param dest the destination directory
-	 * @throws IOException in the case of I/O errors
+	 * Recursively copy the contents of the {@code src} file/directory to the
+	 * {@code dest} file/directory.
+	 * 
+	 * @param src
+	 *            the source directory
+	 * @param dest
+	 *            the destination directory
+	 * @throws IOException
+	 *             in the case of I/O errors
 	 */
 	public static void copyRecursively(File src, File dest) throws IOException {
-		Assert.isTrue(src != null && (src.isDirectory() || src.isFile()), "Source File must denote a directory or file");
+		Assert.isTrue(src != null && (src.isDirectory() || src.isFile()),
+				"Source File must denote a directory or file");
 		Assert.notNull(dest, "Destination File must not be null");
 		doCopyRecursively(src, dest);
 	}
 
 	/**
-	 * Actually copy the contents of the {@code src} file/directory
-	 * to the {@code dest} file/directory.
-	 * @param src the source directory
-	 * @param dest the destination directory
-	 * @throws IOException in the case of I/O errors
+	 * Actually copy the contents of the {@code src} file/directory to the
+	 * {@code dest} file/directory.
+	 * 
+	 * @param src
+	 *            the source directory
+	 * @param dest
+	 *            the destination directory
+	 * @throws IOException
+	 *             in the case of I/O errors
 	 */
 	private static void doCopyRecursively(File src, File dest) throws IOException {
 		if (src.isDirectory()) {
@@ -80,19 +91,16 @@ public abstract class FileSystemUtils {
 			for (File entry : entries) {
 				doCopyRecursively(entry, new File(dest, entry.getName()));
 			}
-		}
-		else if (src.isFile()) {
+		} else if (src.isFile()) {
 			try {
 				dest.createNewFile();
-			}
-			catch (IOException ex) {
+			} catch (IOException ex) {
 				IOException ioex = new IOException("Failed to create file: " + dest);
 				ioex.initCause(ex);
 				throw ioex;
 			}
 			FileCopyUtils.copy(src, dest);
-		}
-		else {
+		} else {
 			// Special File handle: neither a file not a directory.
 			// Simply skip it when contained in nested directory...
 		}

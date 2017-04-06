@@ -21,16 +21,19 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Simple stop watch, allowing for timing of a number of tasks,
- * exposing total running time and running time for each named task.
+ * Simple stop watch, allowing for timing of a number of tasks, exposing total
+ * running time and running time for each named task.
  *
- * <p>Conceals use of {@code System.currentTimeMillis()}, improving the
- * readability of application code and reducing the likelihood of calculation errors.
+ * <p>
+ * Conceals use of {@code System.currentTimeMillis()}, improving the readability
+ * of application code and reducing the likelihood of calculation errors.
  *
- * <p>Note that this object is not designed to be thread-safe and does not
- * use synchronization.
+ * <p>
+ * Note that this object is not designed to be thread-safe and does not use
+ * synchronization.
  *
- * <p>This class is normally used to verify performance during proof-of-concepts
+ * <p>
+ * This class is normally used to verify performance during proof-of-concepts
  * and in development, rather than as part of production applications.
  *
  * @author Rod Johnson
@@ -41,9 +44,9 @@ import java.util.List;
 public class StopWatch {
 
 	/**
-	 * Identifier of this stop watch.
-	 * Handy when we have output from multiple stop watches
-	 * and need to distinguish between them in log or console output.
+	 * Identifier of this stop watch. Handy when we have output from multiple
+	 * stop watches and need to distinguish between them in log or console
+	 * output.
 	 */
 	private final String id;
 
@@ -67,7 +70,6 @@ public class StopWatch {
 	/** Total running time */
 	private long totalTimeMillis;
 
-
 	/**
 	 * Construct a new stop watch. Does not start any task.
 	 */
@@ -76,19 +78,19 @@ public class StopWatch {
 	}
 
 	/**
-	 * Construct a new stop watch with the given id.
-	 * Does not start any task.
-	 * @param id identifier for this stop watch.
-	 * Handy when we have output from multiple stop watches
-	 * and need to distinguish between them.
+	 * Construct a new stop watch with the given id. Does not start any task.
+	 * 
+	 * @param id
+	 *            identifier for this stop watch. Handy when we have output from
+	 *            multiple stop watches and need to distinguish between them.
 	 */
 	public StopWatch(String id) {
 		this.id = id;
 	}
 
-
 	/**
 	 * Return the id of this stop watch, as specified on construction.
+	 * 
 	 * @return the id (empty String by default)
 	 * @since 4.2.2
 	 * @see #StopWatch(String)
@@ -106,10 +108,10 @@ public class StopWatch {
 		this.keepTaskList = keepTaskList;
 	}
 
-
 	/**
-	 * Start an unnamed task. The results are undefined if {@link #stop()}
-	 * or timing methods are called without invoking this method.
+	 * Start an unnamed task. The results are undefined if {@link #stop()} or
+	 * timing methods are called without invoking this method.
+	 * 
 	 * @see #stop()
 	 */
 	public void start() throws IllegalStateException {
@@ -117,9 +119,11 @@ public class StopWatch {
 	}
 
 	/**
-	 * Start a named task. The results are undefined if {@link #stop()}
-	 * or timing methods are called without invoking this method.
-	 * @param taskName the name of the task to start
+	 * Start a named task. The results are undefined if {@link #stop()} or
+	 * timing methods are called without invoking this method.
+	 * 
+	 * @param taskName
+	 *            the name of the task to start
 	 * @see #stop()
 	 */
 	public void start(String taskName) throws IllegalStateException {
@@ -132,9 +136,10 @@ public class StopWatch {
 	}
 
 	/**
-	 * Stop the current task. The results are undefined if timing
-	 * methods are called without invoking at least one pair
-	 * {@code start()} / {@code stop()} methods.
+	 * Stop the current task. The results are undefined if timing methods are
+	 * called without invoking at least one pair {@code start()} /
+	 * {@code stop()} methods.
+	 * 
 	 * @see #start()
 	 */
 	public void stop() throws IllegalStateException {
@@ -154,6 +159,7 @@ public class StopWatch {
 
 	/**
 	 * Return whether the stop watch is currently running.
+	 * 
 	 * @see #currentTaskName()
 	 */
 	public boolean isRunning() {
@@ -162,13 +168,13 @@ public class StopWatch {
 
 	/**
 	 * Return the name of the currently running task, if any.
+	 * 
 	 * @since 4.2.2
 	 * @see #isRunning()
 	 */
 	public String currentTaskName() {
 		return this.currentTaskName;
 	}
-
 
 	/**
 	 * Return the time taken by the last task.
@@ -199,7 +205,6 @@ public class StopWatch {
 		}
 		return this.lastTaskInfo;
 	}
-
 
 	/**
 	 * Return the total time in milliseconds for all tasks.
@@ -232,7 +237,6 @@ public class StopWatch {
 		return this.taskList.toArray(new TaskInfo[this.taskList.size()]);
 	}
 
-
 	/**
 	 * Return a short description of the total running time.
 	 */
@@ -241,16 +245,15 @@ public class StopWatch {
 	}
 
 	/**
-	 * Return a string with a table describing all tasks performed.
-	 * For custom reporting, call getTaskInfo() and use the task info directly.
+	 * Return a string with a table describing all tasks performed. For custom
+	 * reporting, call getTaskInfo() and use the task info directly.
 	 */
 	public String prettyPrint() {
 		StringBuilder sb = new StringBuilder(shortSummary());
 		sb.append('\n');
 		if (!this.keepTaskList) {
 			sb.append("No task info kept");
-		}
-		else {
+		} else {
 			sb.append("-----------------------------------------\n");
 			sb.append("ms     %     Task name\n");
 			sb.append("-----------------------------------------\n");
@@ -270,8 +273,8 @@ public class StopWatch {
 	}
 
 	/**
-	 * Return an informative string describing all tasks performed
-	 * For custom reporting, call {@code getTaskInfo()} and use the task info directly.
+	 * Return an informative string describing all tasks performed For custom
+	 * reporting, call {@code getTaskInfo()} and use the task info directly.
 	 */
 	@Override
 	public String toString() {
@@ -282,13 +285,11 @@ public class StopWatch {
 				long percent = Math.round((100.0 * task.getTimeSeconds()) / getTotalTimeSeconds());
 				sb.append(" = ").append(percent).append("%");
 			}
-		}
-		else {
+		} else {
 			sb.append("; no task info kept");
 		}
 		return sb.toString();
 	}
-
 
 	/**
 	 * Inner class to hold data about one task executed within the stop watch.

@@ -26,8 +26,8 @@ import java.util.function.BiFunction;
 import org.springframework.lang.UsesJava8;
 
 /**
- * Adapts a {@link CompletableFuture} or {@link CompletionStage} into a
- * Spring {@link ListenableFuture}.
+ * Adapts a {@link CompletableFuture} or {@link CompletionStage} into a Spring
+ * {@link ListenableFuture}.
  *
  * @author Sebastien Deleuze
  * @author Juergen Hoeller
@@ -40,9 +40,9 @@ public class CompletableToListenableFutureAdapter<T> implements ListenableFuture
 
 	private final ListenableFutureCallbackRegistry<T> callbacks = new ListenableFutureCallbackRegistry<T>();
 
-
 	/**
 	 * Create a new adapter for the given {@link CompletionStage}.
+	 * 
 	 * @since 4.3.7
 	 */
 	public CompletableToListenableFutureAdapter(CompletionStage<T> completionStage) {
@@ -59,15 +59,13 @@ public class CompletableToListenableFutureAdapter<T> implements ListenableFuture
 			public Object apply(T result, Throwable ex) {
 				if (ex != null) {
 					callbacks.failure(ex);
-				}
-				else {
+				} else {
 					callbacks.success(result);
 				}
 				return null;
 			}
 		});
 	}
-
 
 	@Override
 	public void addCallback(ListenableFutureCallback<? super T> callback) {

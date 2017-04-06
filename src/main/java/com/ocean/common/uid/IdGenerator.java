@@ -10,7 +10,7 @@ import com.ocean.common.text.EncodeUtil;
 /**
  * 封装各种生成唯一性ID算法的工具类.
  */
-@Beta  
+@Beta
 public class IdGenerator {
 
 	private static SecureRandom random = new SecureRandom();

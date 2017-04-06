@@ -42,7 +42,8 @@ import com.ocean.common.concurrent.ext.jsr166e.ConcurrentHashMapV8;
  * 
  * 3. 便捷的构造函数(via guava,Java Collections，并增加了用数组，List等方式初始化Map的函数)
  * 
- * 4. 特殊的类型，包括WeakConcurrentHashMap, IntObjectHashMap, MapCounter, MultiKeyMap, RangeMap
+ * 4. 特殊的类型，包括WeakConcurrentHashMap, IntObjectHashMap, MapCounter, MultiKeyMap,
+ * RangeMap
  * 
  * 
  * 参考文章：《高性能场景下，Map家族的优化使用建议》 http://ocean1978.blogcn.com/articles/hashmap.html
@@ -69,7 +70,8 @@ public class MapUtil {
 	/**
 	 * ConcurrentMap的putIfAbsent()返回之前的Value，此函数封装返回最终存储在Map中的Value
 	 * 
-	 * @see org.apache.commons.lang3.concurrent.ConcurrentUtils#putIfAbsent(ConcurrentMap, Object, Object)
+	 * @see org.apache.commons.lang3.concurrent.ConcurrentUtils#putIfAbsent(ConcurrentMap,
+	 *      Object, Object)
 	 */
 	public static <K, V> V putIfAbsentWithFinalValue(@NotNull final ConcurrentMap<K, V> map, final K key,
 			final V value) {
@@ -82,8 +84,8 @@ public class MapUtil {
 	 * 
 	 * 如果创建对象有一定成本, 直接使用PutIfAbsent可能重复浪费，则使用此类，传入回调的ConcurrentInitializer
 	 * 
-	 * @see org.apache.commons.lang3.concurrent.ConcurrentUtils#createIfAbsent(ConcurrentMap, Object,
-	 * org.apache.commons.lang3.concurrent.ConcurrentInitializer)
+	 * @see org.apache.commons.lang3.concurrent.ConcurrentUtils#createIfAbsent(ConcurrentMap,
+	 *      Object, org.apache.commons.lang3.concurrent.ConcurrentInitializer)
 	 */
 	public static <K, V> V createIfAbsent(@NotNull final ConcurrentMap<K, V> map, final K key,
 			@NotNull final ValueCreator<? extends V> creator) {
@@ -212,7 +214,8 @@ public class MapUtil {
 	}
 
 	/**
-	 * JDK8下，ConcurrentHashMap已不再需要设置loadFactor, concurrencyLevel和initialCapacity.
+	 * JDK8下，ConcurrentHashMap已不再需要设置loadFactor,
+	 * concurrencyLevel和initialCapacity.
 	 * 
 	 * 如果JDK8，使用原生ConcurrentHashMap，否则使用移植版
 	 */
@@ -256,8 +259,10 @@ public class MapUtil {
 	/**
 	 * 创建移植自Netty的key为int的优化HashMap
 	 * 
-	 * @param initialCapacity 建议为16
-	 * @param loadFactor 建议为0.5
+	 * @param initialCapacity
+	 *            建议为16
+	 * @param loadFactor
+	 *            建议为0.5
 	 */
 	public static <V> IntObjectHashMap<V> createIntObjectHashMap(int initialCapacity, float loadFactor) {
 		return new IntObjectHashMap<V>(initialCapacity, loadFactor);
@@ -266,8 +271,10 @@ public class MapUtil {
 	/**
 	 * 创建移植自Netty的key为long的优化HashMap
 	 * 
-	 * @param initialCapacity 建议为16
-	 * @param loadFactor 建议为0.5
+	 * @param initialCapacity
+	 *            建议为16
+	 * @param loadFactor
+	 *            建议为0.5
 	 */
 	public static <V> LongObjectHashMap<V> createLongObjectHashMap(int initialCapacity, float loadFactor) {
 		return new LongObjectHashMap<V>(initialCapacity, loadFactor);
@@ -276,8 +283,10 @@ public class MapUtil {
 	/**
 	 * 创建值为可更改的Integer的HashMap. 可更改的Integer在更改时不需要重新创建Integer对象，节约了内存
 	 * 
-	 * @param initialCapacity 建议为16
-	 * @param loadFactor 建议为0.5
+	 * @param initialCapacity
+	 *            建议为16
+	 * @param loadFactor
+	 *            建议为0.5
 	 */
 	public static <K> HashMap<K, MutableInt> createMutableIntValueHashMap(int initialCapacity, float loadFactor) {
 		return new HashMap<K, MutableInt>(initialCapacity, loadFactor);
@@ -286,8 +295,10 @@ public class MapUtil {
 	/**
 	 * 创建值为可更改的Long的HashMap. 可更改的Long在更改时不需要重新创建Long对象，节约了内存
 	 * 
-	 * @param initialCapacity 建议为16
-	 * @param loadFactor 建议为0.5
+	 * @param initialCapacity
+	 *            建议为16
+	 * @param loadFactor
+	 *            建议为0.5
 	 */
 	public static <K> HashMap<K, MutableLong> createMutableLongValueHashMap(int initialCapacity, float loadFactor) {
 		return new HashMap<K, MutableLong>(initialCapacity, loadFactor);
@@ -314,8 +325,10 @@ public class MapUtil {
 	 * 
 	 * 另有其他结构存储values的MultiMap，请自行参考MultimapBuilder使用.
 	 * 
-	 * @param expectedKeys 默认为16
-	 * @param expectedValuesPerKey 默认为3
+	 * @param expectedKeys
+	 *            默认为16
+	 * @param expectedValuesPerKey
+	 *            默认为3
 	 */
 	public static <K, V> ArrayListMultimap<K, V> createListValueMap(int expectedKeys, int expectedValuesPerKey) {
 		return ArrayListMultimap.create(expectedKeys, expectedValuesPerKey);

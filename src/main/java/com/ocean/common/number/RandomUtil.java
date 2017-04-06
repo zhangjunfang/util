@@ -96,7 +96,8 @@ public class RandomUtil {
 	 * 
 	 * min必须大于0.
 	 * 
-	 * JDK本身不具有控制两端范围的nextInt，因此参考Commons Lang RandomUtils的实现, 不直接复用是因为要传入Random实例
+	 * JDK本身不具有控制两端范围的nextInt，因此参考Commons Lang RandomUtils的实现,
+	 * 不直接复用是因为要传入Random实例
 	 * 
 	 * @see org.apache.commons.lang3.RandomUtils#nextInt(long, long)
 	 */
@@ -160,7 +161,8 @@ public class RandomUtil {
 	 * 
 	 * min必须大于0.
 	 * 
-	 * JDK本身不具有控制两端范围的nextLong，因此参考Commons Lang RandomUtils的实现, 不直接复用是因为要传入Random实例
+	 * JDK本身不具有控制两端范围的nextLong，因此参考Commons Lang RandomUtils的实现,
+	 * 不直接复用是因为要传入Random实例
 	 *
 	 * @see org.apache.commons.lang3.RandomUtils#nextLong(long, long)
 	 */

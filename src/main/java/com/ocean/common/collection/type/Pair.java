@@ -17,8 +17,10 @@ public class Pair<A, B> {
 	/**
 	 * Creates a new pair.
 	 *
-	 * @param first The first value.
-	 * @param second The second value.
+	 * @param first
+	 *            The first value.
+	 * @param second
+	 *            The second value.
 	 */
 	public Pair(@Nullable A first, @Nullable B second) {
 		this.first = first;

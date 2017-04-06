@@ -13,8 +13,9 @@ import com.ocean.common.number.NumberUtil;
  * 
  * 2. 简单的合并系统变量(-D)，环境变量 和默认值，以系统变量优先，在未引入Commons Config时使用.
  * 
- * 3. Properties 本质上是一个HashTable，每次读写都会加锁，所以不支持频繁的System.getProperty(name)来检查系统内容变化 因此扩展了一个ListenableProperties,
- * 在其所关心的属性变化时进行通知.
+ * 3. Properties
+ * 本质上是一个HashTable，每次读写都会加锁，所以不支持频繁的System.getProperty(name)来检查系统内容变化
+ * 因此扩展了一个ListenableProperties, 在其所关心的属性变化时进行通知.
  * 
  * @author ocean
  */
@@ -167,8 +168,9 @@ public class SystemPropertiesUtil {
 
 	/////////// ListenableProperties /////////////
 	/**
-	 * Properties 本质上是一个HashTable，每次读写都会加锁，所以不支持频繁的System.getProperty(name)来检查系统内容变化 因此扩展了一个ListenableProperties,
-	 * 在其所关心的属性变化时进行通知.
+	 * Properties
+	 * 本质上是一个HashTable，每次读写都会加锁，所以不支持频繁的System.getProperty(name)来检查系统内容变化
+	 * 因此扩展了一个ListenableProperties, 在其所关心的属性变化时进行通知.
 	 * 
 	 * @see ListenableProperties
 	 */
@@ -194,8 +196,9 @@ public class SystemPropertiesUtil {
 	}
 
 	/**
-	 * Properties 本质上是一个HashTable，每次读写都会加锁，所以不支持频繁的System.getProperty(name)来检查系统内容变化 因此扩展了一个ListenableProperties,
-	 * 在其所关心的属性变化时进行通知.
+	 * Properties
+	 * 本质上是一个HashTable，每次读写都会加锁，所以不支持频繁的System.getProperty(name)来检查系统内容变化
+	 * 因此扩展了一个ListenableProperties, 在其所关心的属性变化时进行通知.
 	 * 
 	 * @see PropertiesListener
 	 */

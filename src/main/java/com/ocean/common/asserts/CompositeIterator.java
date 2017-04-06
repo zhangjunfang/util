@@ -22,11 +22,12 @@ import java.util.NoSuchElementException;
 import java.util.Set;
 
 /**
- * Composite iterator that combines multiple other iterators,
- * as registered via {@link #add(Iterator)}.
+ * Composite iterator that combines multiple other iterators, as registered via
+ * {@link #add(Iterator)}.
  *
- * <p>This implementation maintains a linked set of iterators
- * which are invoked in sequence until all iterators are exhausted.
+ * <p>
+ * This implementation maintains a linked set of iterators which are invoked in
+ * sequence until all iterators are exhausted.
  *
  * @author Erwin Vervaet
  * @author Juergen Hoeller
@@ -37,7 +38,6 @@ public class CompositeIterator<E> implements Iterator<E> {
 	private final Set<Iterator<E>> iterators = new LinkedHashSet<Iterator<E>>();
 
 	private boolean inUse = false;
-
 
 	/**
 	 * Add given iterator to this composite.

@@ -94,7 +94,8 @@ public class FileTreeWalker {
 	/**
 	 * 以文件名通配符为filter，配合fileTreeTraverser使用.
 	 * 
-	 * @param pattern 支持*与?的通配符，如hello*.txt 匹配 helloworld.txt
+	 * @param pattern
+	 *            支持*与?的通配符，如hello*.txt 匹配 helloworld.txt
 	 */
 	public static final class WildcardFileNameFilter implements Predicate<File> {
 		private final String pattern;
@@ -128,7 +129,8 @@ public class FileTreeWalker {
 	/**
 	 * 以ant风格的path为filter，配合fileTreeTraverser使用.
 	 * 
-	 * @param pattern 支持ant风格的通配符，如/var/?/a?.txt 匹配 /var/b/ab.txt, 其他通配符包括**,*
+	 * @param pattern
+	 *            支持ant风格的通配符，如/var/?/a?.txt 匹配 /var/b/ab.txt, 其他通配符包括**,*
 	 */
 	public static final class AntPathFilter implements Predicate<File> {
 		private final String pattern;

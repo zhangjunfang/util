@@ -49,7 +49,8 @@ public class UnitConverter {
 				case 's':
 					return number * 1000;
 				case 'm':
-					// if it's an m, could be 'minutes' or 'millis'. default minutes
+					// if it's an m, could be 'minutes' or 'millis'. default
+					// minutes
 					if (unitStr.length() >= 2 && unitStr.charAt(1) == 's') {
 						return number;
 					}

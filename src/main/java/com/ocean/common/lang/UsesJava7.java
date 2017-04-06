@@ -30,7 +30,7 @@ import java.lang.annotation.Target;
  * @since 4.1
  */
 @Retention(RetentionPolicy.CLASS)
-@Target({ElementType.METHOD, ElementType.CONSTRUCTOR, ElementType.TYPE})
+@Target({ ElementType.METHOD, ElementType.CONSTRUCTOR, ElementType.TYPE })
 @Documented
 public @interface UsesJava7 {
 }

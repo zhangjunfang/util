@@ -109,7 +109,8 @@ public class JsonMapper {
 	}
 
 	/**
-	 * 反序列化复杂Collection如List<Bean>, contructCollectionType()或contructMapType()构造类型, 然后调用本函数.
+	 * 反序列化复杂Collection如List<Bean>,
+	 * contructCollectionType()或contructMapType()构造类型, 然后调用本函数.
 	 * 
 	 * @see #createCollectionType(Class, Class...)
 	 */
@@ -164,7 +165,8 @@ public class JsonMapper {
 	}
 
 	/**
-	 * 設定是否使用Enum的toString函數來讀寫Enum, 為False時時使用Enum的name()函數來讀寫Enum, 默認為False. 注意本函數一定要在Mapper創建後, 所有的讀寫動作之前調用.
+	 * 設定是否使用Enum的toString函數來讀寫Enum, 為False時時使用Enum的name()函數來讀寫Enum, 默認為False.
+	 * 注意本函數一定要在Mapper創建後, 所有的讀寫動作之前調用.
 	 */
 	public void enableEnumUseToString() {
 		mapper.enable(SerializationFeature.WRITE_ENUMS_USING_TO_STRING);

@@ -26,14 +26,16 @@ import org.apache.commons.logging.LogFactory;
 /**
  * Support class for throttling concurrent access to a specific resource.
  *
- * <p>Designed for use as a base class, with the subclass invoking
- * the {@link #beforeAccess()} and {@link #afterAccess()} methods at
- * appropriate points of its workflow. Note that {@code afterAccess}
- * should usually be called in a finally block!
+ * <p>
+ * Designed for use as a base class, with the subclass invoking the
+ * {@link #beforeAccess()} and {@link #afterAccess()} methods at appropriate
+ * points of its workflow. Note that {@code afterAccess} should usually be
+ * called in a finally block!
  *
- * <p>The default concurrency limit of this support class is -1
- * ("unbounded concurrency"). Subclasses may override this default;
- * check the javadoc of the concrete class that you're using.
+ * <p>
+ * The default concurrency limit of this support class is -1 ("unbounded
+ * concurrency"). Subclasses may override this default; check the javadoc of the
+ * concrete class that you're using.
  *
  * @author Juergen Hoeller
  * @since 1.2.5
@@ -47,15 +49,16 @@ import org.apache.commons.logging.LogFactory;
 public abstract class ConcurrencyThrottleSupport implements Serializable {
 
 	/**
-	 * Permit any number of concurrent invocations: that is, don't throttle concurrency.
+	 * Permit any number of concurrent invocations: that is, don't throttle
+	 * concurrency.
 	 */
 	public static final int UNBOUNDED_CONCURRENCY = -1;
 
 	/**
-	 * Switch concurrency 'off': that is, don't allow any concurrent invocations.
+	 * Switch concurrency 'off': that is, don't allow any concurrent
+	 * invocations.
 	 */
 	public static final int NO_CONCURRENCY = 0;
-
 
 	/** Transient to optimize serialization */
 	protected transient Log logger = LogFactory.getLog(getClass());
@@ -66,15 +69,16 @@ public abstract class ConcurrencyThrottleSupport implements Serializable {
 
 	private int concurrencyCount = 0;
 
-
 	/**
-	 * Set the maximum number of concurrent access attempts allowed.
-	 * -1 indicates unbounded concurrency.
-	 * <p>In principle, this limit can be changed at runtime,
-	 * although it is generally designed as a config time setting.
-	 * <p>NOTE: Do not switch between -1 and any concrete limit at runtime,
-	 * as this will lead to inconsistent concurrency counts: A limit
-	 * of -1 effectively turns off concurrency counting completely.
+	 * Set the maximum number of concurrent access attempts allowed. -1
+	 * indicates unbounded concurrency.
+	 * <p>
+	 * In principle, this limit can be changed at runtime, although it is
+	 * generally designed as a config time setting.
+	 * <p>
+	 * NOTE: Do not switch between -1 and any concrete limit at runtime, as this
+	 * will lead to inconsistent concurrency counts: A limit of -1 effectively
+	 * turns off concurrency counting completely.
 	 */
 	public void setConcurrencyLimit(int concurrencyLimit) {
 		this.concurrencyLimit = concurrencyLimit;
@@ -89,6 +93,7 @@ public abstract class ConcurrencyThrottleSupport implements Serializable {
 
 	/**
 	 * Return whether this throttle is currently active.
+	 * 
 	 * @return {@code true} if the concurrency limit for this instance is active
 	 * @see #getConcurrencyLimit()
 	 */
@@ -96,10 +101,11 @@ public abstract class ConcurrencyThrottleSupport implements Serializable {
 		return (this.concurrencyLimit > 0);
 	}
 
-
 	/**
 	 * To be invoked before the main execution logic of concrete subclasses.
-	 * <p>This implementation applies the concurrency throttle.
+	 * <p>
+	 * This implementation applies the concurrency throttle.
+	 * 
 	 * @see #afterAccess()
 	 */
 	protected void beforeAccess() {
@@ -113,18 +119,18 @@ public abstract class ConcurrencyThrottleSupport implements Serializable {
 				boolean interrupted = false;
 				while (this.concurrencyCount >= this.concurrencyLimit) {
 					if (interrupted) {
-						throw new IllegalStateException("Thread was interrupted while waiting for invocation access, " +
-								"but concurrency limit still does not allow for entering");
+						throw new IllegalStateException("Thread was interrupted while waiting for invocation access, "
+								+ "but concurrency limit still does not allow for entering");
 					}
 					if (debug) {
-						logger.debug("Concurrency count " + this.concurrencyCount +
-								" has reached limit " + this.concurrencyLimit + " - blocking");
+						logger.debug("Concurrency count " + this.concurrencyCount + " has reached limit "
+								+ this.concurrencyLimit + " - blocking");
 					}
 					try {
 						this.monitor.wait();
-					}
-					catch (InterruptedException ex) {
-						// Re-interrupt current thread, to allow other threads to react.
+					} catch (InterruptedException ex) {
+						// Re-interrupt current thread, to allow other threads
+						// to react.
 						Thread.currentThread().interrupt();
 						interrupted = true;
 					}
@@ -139,6 +145,7 @@ public abstract class ConcurrencyThrottleSupport implements Serializable {
 
 	/**
 	 * To be invoked after the main execution logic of concrete subclasses.
+	 * 
 	 * @see #beforeAccess()
 	 */
 	protected void afterAccess() {
@@ -153,13 +160,13 @@ public abstract class ConcurrencyThrottleSupport implements Serializable {
 		}
 	}
 
-
-	//---------------------------------------------------------------------
+	// ---------------------------------------------------------------------
 	// Serialization support
-	//---------------------------------------------------------------------
+	// ---------------------------------------------------------------------
 
 	private void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException {
-		// Rely on default serialization, just initialize state after deserialization.
+		// Rely on default serialization, just initialize state after
+		// deserialization.
 		ois.defaultReadObject();
 
 		// Initialize transient fields.

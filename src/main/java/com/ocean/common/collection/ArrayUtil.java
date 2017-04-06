@@ -65,7 +65,8 @@ public class ArrayUtil {
 	}
 
 	/**
-	 * list.toArray() 返回的是Object[] 如果要有类型的数组话，就要使用list.toArray(new String[list.size()])，这里对调用做了简化
+	 * list.toArray() 返回的是Object[] 如果要有类型的数组话，就要使用list.toArray(new
+	 * String[list.size()])，这里对调用做了简化
 	 */
 	@SuppressWarnings("unchecked")
 	public static <T> T[] toArray(List<T> list, Class<T> type) {

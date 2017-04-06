@@ -46,7 +46,8 @@ public class ThreadDumpper {
 	/**
 	 * 符合条件则打印线程栈.
 	 * 
-	 * @param reasonMsg 发生ThreadDump的原因
+	 * @param reasonMsg
+	 *            发生ThreadDump的原因
 	 */
 	public void threadDumpIfNeed(String reasonMsg) {
 		if (!enable) {
@@ -77,7 +78,8 @@ public class ThreadDumpper {
 	}
 
 	/**
-	 * 打印全部的stack，重新实现threadInfo的toString()函数，因为默认最多只打印8层的stack. 同时，不再打印lockedMonitors和lockedSynchronizers.
+	 * 打印全部的stack，重新实现threadInfo的toString()函数，因为默认最多只打印8层的stack.
+	 * 同时，不再打印lockedMonitors和lockedSynchronizers.
 	 */
 	private String dumpThreadInfo(Thread thread, StackTraceElement[] stackTrace, StringBuilder sb) {
 		sb.append("\"").append(thread.getName()).append("\" Id=").append(thread.getId()).append(' ')

@@ -23,8 +23,7 @@ import com.ocean.common.reflect.ClassUtil;
 /**
  * 使用Jaxb2.0实现XML<->Java Object的Mapper.
  * 
- * 在创建时需要设定所有需要序列化的Root对象的Class.
- * 特别支持Root对象是Collection的情形.
+ * 在创建时需要设定所有需要序列化的Root对象的Class. 特别支持Root对象是Collection的情形.
  * 
  * @author ocean
  */
@@ -38,7 +37,7 @@ public class XmlMapper {
 	 */
 	@SuppressWarnings("rawtypes")
 	public static String toXml(Object root) {
-		Class clazz =ClassUtil.unwrapCglib(root);
+		Class clazz = ClassUtil.unwrapCglib(root);
 		return toXml(root, clazz, null);
 	}
 
@@ -108,8 +107,7 @@ public class XmlMapper {
 	}
 
 	/**
-	 * 创建Marshaller并设定encoding(可为null).
-	 * 线程不安全，需要每次创建或pooling。
+	 * 创建Marshaller并设定encoding(可为null). 线程不安全，需要每次创建或pooling。
 	 */
 	@SuppressWarnings("rawtypes")
 	public static Marshaller createMarshaller(Class clazz, String encoding) {
@@ -131,8 +129,7 @@ public class XmlMapper {
 	}
 
 	/**
-	 * 创建UnMarshaller.
-	 * 线程不安全，需要每次创建或pooling。
+	 * 创建UnMarshaller. 线程不安全，需要每次创建或pooling。
 	 */
 	@SuppressWarnings("rawtypes")
 	public static Unmarshaller createUnmarshaller(Class clazz) {
@@ -153,8 +150,8 @@ public class XmlMapper {
 				jaxbContext = JAXBContext.newInstance(clazz, CollectionWrapper.class);
 				jaxbContexts.putIfAbsent(clazz, jaxbContext);
 			} catch (JAXBException ex) {
-				throw new RuntimeException("Could not instantiate JAXBContext for class [" + clazz + "]: "
-						+ ex.getMessage(), ex);
+				throw new RuntimeException(
+						"Could not instantiate JAXBContext for class [" + clazz + "]: " + ex.getMessage(), ex);
 			}
 		}
 		return jaxbContext;

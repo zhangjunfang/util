@@ -323,7 +323,8 @@ public class ClassUtil {
 	 * 
 	 * 只匹配函数名, 如果有多个同名函数返回第一个
 	 * 
-	 * 用于方法需要被多次调用的情况. 先使用本函数先取得Method,然后调用Method.invoke(Object obj, Object... args)
+	 * 用于方法需要被多次调用的情况. 先使用本函数先取得Method,然后调用Method.invoke(Object obj, Object...
+	 * args)
 	 * 
 	 * 因为class.getMethods() 不能获取父类的private函数, 因此采用循环向上的getMethods();
 	 */
@@ -397,11 +398,13 @@ public class ClassUtil {
 			// No thread context class loader -> use class loader of this class.
 			cl = ClassUtils.class.getClassLoader();
 			if (cl == null) {
-				// getClassLoader() returning null indicates the bootstrap ClassLoader
+				// getClassLoader() returning null indicates the bootstrap
+				// ClassLoader
 				try {
 					cl = ClassLoader.getSystemClassLoader();
 				} catch (Throwable ex) {
-					// Cannot access system ClassLoader - oh well, maybe the caller can live with null...
+					// Cannot access system ClassLoader - oh well, maybe the
+					// caller can live with null...
 				}
 			}
 		}
@@ -432,8 +435,10 @@ public class ClassUtil {
 	 * 
 	 * eg. public UserDao extends HibernateDao<User>
 	 * 
-	 * @param clazz The class to introspect
-	 * @return the first generic declaration, or Object.class if cannot be determined
+	 * @param clazz
+	 *            The class to introspect
+	 * @return the first generic declaration, or Object.class if cannot be
+	 *         determined
 	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public static <T> Class<T> getClassGenricType(final Class clazz) {
@@ -449,9 +454,12 @@ public class ClassUtil {
 	 * 
 	 * 如public UserDao extends HibernateDao<User,Long>
 	 * 
-	 * @param clazz clazz The class to introspect
-	 * @param index the Index of the generic ddeclaration, start from 0.
-	 * @return the index generic declaration, or Object.class if cannot be determined
+	 * @param clazz
+	 *            clazz The class to introspect
+	 * @param index
+	 *            the Index of the generic ddeclaration, start from 0.
+	 * @return the index generic declaration, or Object.class if cannot be
+	 *         determined
 	 */
 	@SuppressWarnings("rawtypes")
 	public static Class getClassGenricType(final Class clazz, final int index) {

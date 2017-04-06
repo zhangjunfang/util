@@ -71,7 +71,8 @@ public class URLResourceUtil {
 		try {
 			return new File(toURI(fileUrl.toString()).getSchemeSpecificPart());
 		} catch (URISyntaxException ex) {
-			// Fallback for URLs that are not valid URIs (should hardly ever happen).
+			// Fallback for URLs that are not valid URIs (should hardly ever
+			// happen).
 			return new File(fileUrl.getFile());
 		}
 	}

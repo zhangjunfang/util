@@ -67,7 +67,8 @@ public class MathUtil {
 	/**
 	 * 是否2的倍数
 	 * 
-	 * @param value <=0 时总是返回false
+	 * @param value
+	 *            <=0 时总是返回false
 	 */
 	public static boolean isPowerOfTwo(long value) {
 		return LongMath.isPowerOfTwo(value);
@@ -76,7 +77,8 @@ public class MathUtil {
 	/**
 	 * 当模为2的倍数时，用比取模块更快的方式计算.
 	 * 
-	 * @param value 可以为负数，比如 －1 mod 16 = 15
+	 * @param value
+	 *            可以为负数，比如 －1 mod 16 = 15
 	 */
 	public static int modByPowerOfTwo(int value, int mod) {
 		return value & mod - 1;
@@ -145,7 +147,8 @@ public class MathUtil {
 	/**
 	 * 平方
 	 * 
-	 * @param k 平方次数,不能为负数, k=0时返回1.
+	 * @param k
+	 *            平方次数,不能为负数, k=0时返回1.
 	 */
 	public static int pow(int b, int k) {
 		return IntMath.pow(b, k);
@@ -154,7 +157,8 @@ public class MathUtil {
 	/**
 	 * 平方
 	 * 
-	 * @param k 平方次数,不能为负数, k=0时返回1.
+	 * @param k
+	 *            平方次数,不能为负数, k=0时返回1.
 	 */
 	public static long pow(long b, int k) {
 		return LongMath.pow(b, k);

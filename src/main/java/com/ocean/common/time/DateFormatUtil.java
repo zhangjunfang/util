@@ -136,7 +136,8 @@ public class DateFormatUtil {
 		long now = ClockUtil.currentTimeMillis();
 		long span = now - timeStampMillis;
 		if (span < 0) {
-			// 'c' 日期和时间，被格式化为 "%ta %tb %td %tT %tZ %tY"，例如 "Sun Jul 20 16:17:00 EDT 1969"。
+			// 'c' 日期和时间，被格式化为 "%ta %tb %td %tT %tZ %tY"，例如 "Sun Jul 20 16:17:00
+			// EDT 1969"。
 			return String.format("%tc", timeStampMillis);
 		}
 		if (span < DateUtil.MILLIS_PER_SECOND) {
