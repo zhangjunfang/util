@@ -3,12 +3,12 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.ocean.common</groupId>
-	<artifactId>util</artifactId>
+	<artifactId>util-activemq</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
-	<name>util</name>  
+	<name>util</name>
 	<description>Demo project for Spring Boot</description>
-	<parent>   
+	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>1.5.2.RELEASE</version>
@@ -221,6 +221,13 @@
 			<artifactId>jaxen</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<dependency>
+			<groupId>org.fusesource.mqtt-client</groupId>
+			<artifactId>mqtt-client</artifactId>
+			<version>1.14</version>
+		</dependency>
+
 	</dependencies>
 
 	<dependencyManagement>
